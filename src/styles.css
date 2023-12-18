@@ -1,0 +1,38 @@
+/* You can add global styles to this file, and also import other style files */
+:root{
+    --col-white: #FEF9F5;
+    --col-dark-black: #1A2131;
+    --col-black: #202B41;
+    --col-purple: #7763FB;
+}
+.place-items-center{
+    place-items: center;
+}
+.place-content-center{
+    place-content: center;
+}
+.bg-gradient-purple{
+    background: linear-gradient(310deg,#7928ca,#ff0080)!important;
+}
+.bg-gradient-red{
+    background: linear-gradient(to right, rgb(238, 9, 121), rgb(255, 106, 0))!important;
+}
+.bg-gradient-green{
+    background: linear-gradient( 310deg,#17ad37,#98ec2d)!important;
+}
+.bg-gradient-skyblue{
+    background: linear-gradient(to top, rgb(0, 198, 251) 0%, rgb(0, 91, 234) 100%)!important;
+}
+.bg-gradient-yellow{
+    background: linear-gradient(to right, rgb(247, 151, 30), rgb(255, 210, 0))!important;
+}
+.bg-gradient-pink{
+    background: linear-gradient(to right, rgb(52, 148, 230), rgb(236, 110, 173))!important;
+}
+.bg-gradient-darkblue{
+    background: linear-gradient(-20deg, rgb(43, 88, 118) 0%, rgb(78, 67, 118) 100%)!important;
+}
+/*BOOTSTRAP*/
+.table-hover>tbody>tr:hover>*{
+    --bs-table-bg-state: var(--col-dark-black)!important;
+}

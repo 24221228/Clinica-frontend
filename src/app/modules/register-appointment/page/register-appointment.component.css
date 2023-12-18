@@ -1,0 +1,7 @@
+#register-appointment-form_title,
+.input-register-appointment{
+    background-color: var(--col-dark-black);
+}
+.container-register-appointment{
+    background-color: var(--col-black);
+}

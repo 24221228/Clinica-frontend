@@ -1,0 +1,7 @@
+.container-register-patient{
+    background-color: var(--col-black);
+}
+.input-register-patient,
+#register-patient-form_title{
+    background-color: var(--col-dark-black);
+}

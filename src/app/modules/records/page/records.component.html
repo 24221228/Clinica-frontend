@@ -1,0 +1,148 @@
+<app-layout>
+    <div class="bg-transparent">
+        <div class="row row-cols-lg-2 row-cols-md-2 container-report m-0 mt-3 p-3">
+            <form class="col-lg-12 col-md-12 col-sm-12 col-12 row row-cols-lg-1 row-cols-md-2 row-cols-sm-1 row-cols-1 m-0 d-flex">
+                <div class="col-lg-3 col-md-3 col-sm-4 col-12 ps-lg-0 ps-md-0 ps-sm-0 pe-lg-3 pe-md-3 pe-sm-3 p-0">
+                    <select class="form-select" aria-label="Default select example" name="selectedRecordValue" [(ngModel)]="selectedRecordValue" (change)="seleccionRegistro($event)">
+                        <option value="" selected>Seleccionar Registro</option>
+                        <option value="citas">Registro de Citas</option>
+                        <option value="pacientes">Registro de Pacientes</option>
+                        <option value="especialistas">Registro de Especialistas</option>
+                        <option value="usuarios">Registro de Usuarios</option>
+                    </select>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-4 col-12 mt-lg-0 mt-md-0 mt-sm-0 mt-3 p-0">
+                    <button class="btn btn-primary" (click)="selectRecord()">
+                        Buscar Registro
+                    </button>
+                </div>
+            </form>
+            <form class="col-lg-12 col-md-12 col-sm-12" *ngIf="this.isRecordSelected">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12 row row-cols-lg-1 row-cols-md-2 row-cols-sm-1 row-cols-1 m-0 mt-5 d-flex">
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-12 ps-lg-0 ps-md-0 ps-sm-0 pe-lg-3 pe-md-3 pe-sm-3 p-0">
+                        <select class="form-select" aria-label="Default select example" (change)="seleccionTiempo($event)">
+                            <option value="" selected>Seleccionar tiempo</option>
+                            <option value="dia">Ver por día</option>
+                            <option value="fechas">Ver entre dos fechas</option>
+                            <option value="Especialistas">Ver global</option>
+                        </select>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-12 mt-lg-0 mt-md-0 mt-sm-0 mt-3 mb-lg-0 mb-md-0 mb-sm-0 mb-2 pe-lg-3 pe-md-3 pe-sm-3 p-0" *ngIf="seleccionTiempoValue === 'dia' || seleccionTiempoValue === 'fechas'">
+                        <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-12 mt-lg-0 mt-md-0 mt-sm-0 mt-3 mb-lg-0 mb-md-0 mb-sm-0 mb-2 pe-lg-3 pe-md-3 pe-sm-3 p-0" *ngIf="seleccionTiempoValue === 'fechas'">
+                        <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12 row row-cols-lg-1 row-cols-md-2 row-cols-sm-1 row-cols-1 m-0 mt-4 d-flex">
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-12 d-flex p-lg-0 p-md-0 p-sm-0 pe-lg-3 pe-md-3 pe-sm-3 p-0">
+                        <select class="form-select w-100" aria-label="Default select example">
+                            <option value="" selected>Buscar por</option>
+                            <option value="Citas">Codigo</option>
+                            <option value="Pacientes">Nombres y Apellidos</option>
+                            <option value="Especialistas">Servicio</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-12 mt-lg-0 mt-md-0 mt-sm-0 mt-3 ps-lg-0 ps-md-0 ps-sm-0 pe-lg-3 pe-md-3 pe-sm-3 p-0">
+                        <input type="text" class="form-control" id="exampleFormControlInput1">
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 mt-4 d-flex">
+                    <button class="btn btn-secondary">
+                        Buscar
+                    </button>
+                </div>
+            </form>
+            <div class="col-lg-12 col-md-12 mt-4 d-flex" *ngIf="this.isRecordSelected">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12 d-flex justify-content-end">
+                    <button class="btn btn-danger">
+                        Eliminar Filtros de busqueda
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row row-cols-lg-1 m-4" *ngIf="this.isRecordSelected">
+            <div id="records-table" class="col-lg-12 p-4 rounded-3">
+                <h5 class="text-white mb-4 border-bottom pb-3">Registros de {{registrationTitle}}</h5>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead *ngIf="headerItemsData && headerItemsData[registroTipoValue]">
+                          <tr>
+                            <th *ngFor="let itemHeader of headerItemsData[registroTipoValue]">{{itemHeader.label}}</th>
+                            <!--<th (click)="sortData('id')">Codigo <i [ngClass]="{'bi bi-sort-numeric-down': sortBy === 'id' && sortOrder === 'asc', 'bi bi-sort-numeric-up-alt': sortBy === 'id' && sortOrder === 'desc'}"></i></th>
+                            <th (click)="sortData('name')">Nombres y Apellidos <i [ngClass]="{'bi bi-sort-alpha-down': sortBy === 'name' && sortOrder === 'asc', 'bi bi-sort-alpha-up-alt': sortBy === 'name' && sortOrder === 'desc'}"></i></th>
+                            <th (click)="sortData('service')">Servicio <i [ngClass]="{'bi bi-sort-alpha-down': sortBy === 'service' && sortOrder === 'asc', 'bi bi-sort-alpha-up-alt': sortBy === 'service' && sortOrder === 'desc'}"></i></th>
+                            <th>Fecha</th>-->
+                            <th>Acciones</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let record of recordsData">
+                                <td class="bg-transparent text-white">{{record.id}}</td>
+                                <td class="bg-transparent text-white">{{record.nombres}}</td>
+                                <td class="bg-transparent text-white">{{record.apellidos}}</td>
+                                <td class="bg-transparent text-white">{{record.documento_numero}}</td>
+                                <td class="bg-transparent text-white">{{record.direccion_completa}}</td>
+                                <td class="bg-transparent text-white">{{record.numero_telefono}}</td>
+                                <td class="bg-transparent text-white">
+                                    <button class="btn btn-primary" (click)="verDetalle(record)" data-bs-toggle="modal" data-bs-target="#detalleRegistroModal">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                    <button class="btn btn-success ms-2">
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!--
+                            <tr *ngFor="let cita of citasData">
+                                <td class="bg-transparent text-white">{{ cita.id }}</td>
+                                <td class="bg-transparent text-white">{{ cita.name }}</td>
+                                <td class="bg-transparent text-white">{{ cita.service }}</td>
+                                <td class="bg-transparent text-white">{{ cita.date }}</td>
+                                <td class="bg-transparent text-white">
+                                    <button class="btn btn-primary" (click)="verDetalle(cita)" data-bs-toggle="modal" data-bs-target="#detalleRegistroModal">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                    <button class="btn btn-success ms-2">
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
+                                </td>
+                              </tr>
+                            -->
+                        </tbody>
+                    </table>
+                    <ul class="pagination justify-content-end">
+                        <li class="page-item">
+                          <a class="page-link">1</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="detalleRegistroModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header border-bottom border-secondary">
+              <h1 class="modal-title fs-6 text-white fw-bold" id="exampleModalLabel">Detalle de {{this.registrationTitle}}</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                    <p class="text-white fw-lighter"><strong class="text-white-50 me-2">Código:</strong> {{ this.selectedItem?.id }}</p>
+                    <p class="text-white fw-lighter"><strong class="text-white-50 me-2">Nombres y Apellidos:</strong> {{ this.selectedItem?.name }}</p>
+                    <p class="text-white fw-lighter"><strong class="text-white-50 me-2">Servicio:</strong> {{ this.selectedItem?.service }}</p>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer border-secondary">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+        </div>
+    </div>
+</app-layout>

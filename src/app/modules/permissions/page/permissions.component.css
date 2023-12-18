@@ -1,0 +1,11 @@
+.nav-link.active{
+    color: #212529!important;
+}
+.container-permission{
+    background-color: var(--col-black);
+}
+#register-permission-form_title,
+.input-register-permission,
+.input-user{
+    background-color: var(--col-dark-black);
+}

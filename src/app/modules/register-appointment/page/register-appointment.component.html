@@ -1,0 +1,82 @@
+<app-layout>
+    <div class="bg-transparent">
+        <div class="row row-cols-lg-1 m-0 mt-3 p-3">
+            <div class="col-lg-12">
+                <h5 class="text-white mb-4 border-bottom pb-3">Registrar Cita</h5>
+                <form>
+                    <div class="border rounded-3 mb-4 border-secondary container-register-appointment">
+                        <h5 id="register-appointment-form_title" class="ps-3 pt-2 pb-2 rounded-top-3 text-uppercase text-white fs-6">Información del Paciente</h5>
+                        <div class="row row-cols-lg-3 m-0">
+                            <div class="mb-3 mt-3">
+                                <label for="exampleInputEmail1" class="form-label text-white">Seleccionar Paciente</label>
+                                <select class="form-select text-white input-register-appointment border-secondary" id="floatingSelect" aria-label="Floating label select example">
+                                    <option selected>Seleccionar</option>
+                                    <option value="1">Hombre</option>
+                                    <option value="2">Mujer</option>
+                                </select>                             
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border rounded-3 mb-4 border-secondary container-register-appointment">
+                        <h5 id="register-appointment-form_title" class="ps-3 pt-2 pb-2 rounded-top-3 text-uppercase text-white fs-6">Información del especialista</h5>
+                        <div class="row row-cols-lg-3 m-0">
+                            <div class="mb-3 mt-3">
+                                <label for="exampleInputEmail1" class="form-label text-white">Seleccione especialidad</label>
+                                <select class="form-select text-white input-register-appointment border-secondary" id="floatingSelect" aria-label="Floating label select example">
+                                    <option selected>Seleccionar</option>
+                                    <option value="1">Padre</option>
+                                    <option value="2">Madre</option>
+                                    <option value="2">Cónyugue</option>
+                                    <option value="2">Tio(a)</option>
+                                    <option value="2">Sobrino(a)</option>
+                                    <option value="2">Hijo(a)</option>
+                                    <option value="2">Primo(a)</option>
+                                    <option value="2">Hermano(a)</option>
+                                    <option value="2">Amigo(a)</option>
+                                </select>   
+                            </div>
+                            <div class="mb-3 mt-3">
+                                <label for="exampleInputEmail1" class="form-label text-white">Seleccione especialista</label>
+                                <select class="form-select text-white input-register-appointment border-secondary" id="floatingSelect" aria-label="Floating label select example">
+                                    <option selected>Seleccionar</option>
+                                    <option value="1">Padre</option>
+                                    <option value="2">Madre</option>
+                                    <option value="2">Cónyugue</option>
+                                    <option value="2">Tio(a)</option>
+                                    <option value="2">Sobrino(a)</option>
+                                    <option value="2">Hijo(a)</option>
+                                    <option value="2">Primo(a)</option>
+                                    <option value="2">Hermano(a)</option>
+                                    <option value="2">Amigo(a)</option>
+                                </select>   
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border rounded-3 mb-4 border-secondary container-register-appointment">
+                        <h5 id="register-appointment-form_title" class="ps-3 pt-2 pb-2 rounded-top-3 text-uppercase text-white fs-6">Cita</h5>
+                        <div class="row row-cols-lg-3 m-0">
+                            <div class="mb-3 mt-3">
+                                <label for="exampleInputEmail1" class="form-label text-white">Fecha de la Cita</label>
+                                <input id="input-username" type="date" class="form-control text-white border-secondary input-register-appointment" aria-describedby="emailHelp">
+                            </div>
+                            <div class="mb-3 mt-3">
+                                <label for="exampleInputEmail1" class="form-label text-white">Hora de la Cita</label>
+                                <input id="input-username" type="time" class="form-control text-white border-secondary input-register-appointment" aria-describedby="emailHelp">
+                            </div>
+                            <div class="mb-3 mt-3">
+                                <label for="exampleInputEmail1" class="form-label text-white">Motivo</label>
+                                <input id="input-username" type="text" class="form-control text-white border-secondary input-register-appointment" aria-describedby="emailHelp">
+                            </div>
+                            <div class="mb-3 mt-3 text-white">
+                                <input id="input-username" type="checkbox" class="form-check-input input-register-appointment">
+                                Acepto los términos y condiciones del servicio y la política de privacidad.
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Programar Cita</button>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</app-layout>

@@ -1,0 +1,131 @@
+<app-layout>
+    <div class="bg-transparent">
+        <div class="row row-cols-lg-2 m-0 p-3 container-profile">
+            <div class="col-lg-7">
+                <h5 class="text-white mb-4 border-bottom pb-3">Mi Cuenta</h5>
+                <form [formGroup]="updateProfileForm" autocomplete="off" (ngSubmit)="updatePerson()">
+                    <div class="border rounded-3 mb-5 border-secondary">
+                        <h5 id="profile-form-edit-title" class="ps-3 pt-2 pb-1 rounded-top-3 text-uppercase text-white fs-6">Información de Usuario</h5>
+                        <div id="container-form-edit-profile" class="row row-cols-lg-2 m-0">
+                            <div class="mb-3 mt-3">
+                                <label for="exampleInputEmail1" class="form-label text-white">Nombre de Usuario</label>
+                                <input type="email" class="form-control text-white border-secondary input-edit-profile" aria-describedby="emailHelp" [value]="this.userName" disabled>
+                            </div>
+                            <div class="mb-3 mt-3">
+                                <label for="exampleInputPassword1" class="form-label text-white">Correo Electrónico</label>
+                                <input type="text" class="form-control text-white border-secondary input-edit-profile" [value]="userData">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label text-white">Nombres</label>
+                                <input type="text" class="form-control text-white border-secondary input-edit-profile" id="exampleInputEmail1" aria-describedby="emailHelp" [value]="personData?.nombres" formControlName="nombres">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label text-white">Apellidos</label>
+                                <input type="text" class="form-control text-white border-secondary input-edit-profile" [value]="personData?.apellidos" formControlName="apellidos">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border rounded-3 mb-4 border-secondary">
+                        <h5 id="profile-form-edit-title" class="ps-3 pt-2 pb-1 rounded-top-3 text-uppercase text-white fs-6">Información de Contacto</h5>
+                        <div id="container-form-edit-profile" class="row row-cols-lg-2 m-0">
+                            <div class="mb-3 col-lg-12 mt-3">
+                                <label for="exampleInputEmail1" class="form-label text-white">Dirección</label>
+                                <input type="text" class="form-control text-white border-secondary input-edit-profile" aria-describedby="emailHelp" [value]="personData?.direccion_completa" formControlName="direccion_completa">
+                            </div>
+                            <div class="mb-3 col-lg-6">
+                                <label for="exampleInputEmail1" class="form-label text-white">Ciudad</label>
+                                <input type="text" class="form-control text-white border-secondary input-edit-profile" aria-describedby="emailHelp" [value]="personData?.ciudad" formControlName="ciudad">
+                            </div>
+                            <div class="mb-3 col-lg-6">
+                                <label for="exampleInputEmail1" class="form-label text-white">País</label>
+                                <input type="text" class="form-control text-white border-secondary input-edit-profile" aria-describedby="emailHelp" [value]="personData?.pais" formControlName="pais">
+                            </div>
+                            <div class="mb-3 col-lg-6">
+                                <label for="exampleInputEmail1" class="form-label text-white">Telefono</label>
+                                <input type="text" class="form-control text-white border-secondary input-edit-profile" aria-describedby="emailHelp" [value]="personData?.numero_telefono" formControlName="numero_telefono">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                </form>
+            </div>
+            <div class="col-lg-5 row-cols-1 container-profile-info rounded">
+                <div class="col d-flex place-content-center mt-3">
+                    <img src="https://t2.gstatic.com/licensed-image?q=tbn:ANd9GcQKp5ZsMFTZZrNFb_p2mduiKPipCDh7meawj_zla0mhOHNi_07O3TcMv-q-H-HBvH2G" alt="user_photo" style="width: 150px; height: 150px; border-radius: 50%;">
+                </div>
+                <div class="col mb-2 mt-3">
+                    <h4 class="text-center text-white">{{personData?.nombres}}</h4>
+                </div>
+                <div class="row row-cols-1 mt-3 mb-4 p-0">
+                    <div class="col">
+                        <h5 class="text-start text-white">Sobre mi</h5>
+                    </div>
+                </div>
+                <div class="row row-cols-lg-2 p-0 m-auto">
+                    <div class="col">
+                        <p class="text-white">Correo electrónico</p>
+                    </div>
+                    <div class="col">
+                        <p class="text-white">{{userData}}</p>
+                    </div>
+                </div>
+                <div class="row row-cols-lg-2 p-0 m-auto">
+                    <div class="col">
+                        <p class="text-white">Tipo de Documento</p>
+                    </div>
+                    <div class="col">
+                        <p class="text-white">{{personData?.documento_tipo}}</p>
+                    </div>
+                </div>
+                <div class="row row-cols-lg-2 p-0 m-auto">
+                    <div class="col">
+                        <p class="text-white">Numero de Documento</p>
+                    </div>
+                    <div class="col">
+                        <p class="text-white">{{personData?.documento_numero}}</p>
+                    </div>
+                </div>
+                <div class="row row-cols-lg-2 p-0 m-auto">
+                    <div class="col">
+                        <p class="text-white">Fecha de Nacimiento</p>
+                    </div>
+                    <div class="col">
+                        <p class="text-white">{{personData?.fecha_nacimiento}}</p>
+                    </div>
+                </div>
+                <div class="row row-cols-lg-2 p-0 m-auto">
+                    <div class="col">
+                        <p class="text-white">Dirección</p>
+                    </div>
+                    <div class="col">
+                        <p class="text-white">{{personData?.direccion_completa}}</p>
+                    </div>
+                </div>
+                <div class="row row-cols-lg-2 p-0 m-auto">
+                    <div class="col">
+                        <p class="text-white">Ciudad</p>
+                    </div>
+                    <div class="col">
+                        <p class="text-white">{{personData?.ciudad}}</p>
+                    </div>
+                </div>
+                <div class="row row-cols-lg-2 p-0 m-auto">
+                    <div class="col">
+                        <p class="text-white">Pais</p>
+                    </div>
+                    <div class="col">
+                        <p class="text-white">{{personData?.pais}}</p>
+                    </div>
+                </div>
+                <div class="row row-cols-lg-2 p-0 m-auto">
+                    <div class="col">
+                        <p class="text-white">Telefono</p>
+                    </div>
+                    <div class="col">
+                        <p class="text-white">{{personData?.numero_telefono}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</app-layout>

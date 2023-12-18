@@ -1,0 +1,8 @@
+#profile-form-edit-title,
+.input-edit-profile{
+    background-color: var(--col-dark-black)!important;
+}
+#container-form-edit-profile,
+.container-profile-info{
+    background-color: var(--col-black);
+}

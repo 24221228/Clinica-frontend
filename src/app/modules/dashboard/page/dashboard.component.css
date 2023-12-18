@@ -1,0 +1,29 @@
+#container-dating-figures,
+#container-dating-statistics,
+#container-customer-statistics,
+.container-top-services,
+.container-top-products,
+.container-top-customers,
+#container-dating-actions,
+#container-appointments-recent{
+    background-color: var(--col-black);
+}
+#container-top-services_body,
+#container-top-services_body,
+#container-top-services_body{
+    height: 500px;
+}
+.progress,
+.progress-stacked{
+    height: 0.4rem!important;
+}
+.appointments-recent-table-header{
+    background-color: var(--col-dark-black)!important;
+}
+#user-photo{
+    width: 40px;
+    height: 40px;
+}
+#specialistScoreText{
+    font-size: 0.8rem;
+}

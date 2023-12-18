@@ -1,0 +1,7 @@
+.container-register-specialty{
+    background-color: var(--col-black);
+}
+#register-specialty-form_title,
+.input-register-specialty{
+    background-color: var(--col-dark-black);
+}

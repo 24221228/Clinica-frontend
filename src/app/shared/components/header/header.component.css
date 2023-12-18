@@ -1,0 +1,14 @@
+.container-header-actions{
+    width: 260px;
+}
+.header-button{
+    width: 32px;
+}
+.container-header-user-photo{
+    height: 32px;
+    width: 130px;
+}
+.header-button,
+.container-header-user-photo{
+    background-color: var(--col-black);
+}

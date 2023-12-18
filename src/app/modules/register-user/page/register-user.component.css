@@ -1,0 +1,10 @@
+.container-register-user{
+    background-color: var(--col-black);
+}
+#input-username{
+    cursor: not-allowed;
+}
+.input-register-user,
+#register-user-form_title{
+    background-color: var(--col-dark-black)!important;
+}

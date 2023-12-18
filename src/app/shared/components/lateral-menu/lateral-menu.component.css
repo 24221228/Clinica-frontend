@@ -1,0 +1,14 @@
+.btn-logo{
+    width: 150px;
+    height: 60px;
+}
+#container-lateralMenu_option:hover{
+    background-color: #2E394E;
+}
+#container-lateralMenu_option:hover a{
+    color: white!important;
+}
+.active-option{
+    background-color: #2E394E;
+    color: white!important;
+}

@@ -1,0 +1,199 @@
+<app-layout>
+    <div class="bg-transparent">
+        <div class="row row-cols-lg-1 m-0 mt-3 p-3">
+            <div class="col-lg-12">
+                <h5 class="text-white mb-4 border-bottom pb-3">Permisos</h5>
+                <ul class="nav nav-tabs mt-lg-0 mt-md-5 mb-5 border-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-white fw-bold fs-6" [class.active]="activeTab === 'tab1'" (click)="setActiveTab('tab1')">Asignar Rol</a>
+                      </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white fw-bold fs-6" [class.active]="activeTab === 'tab2'" (click)="setActiveTab('tab2')">Modificar Rol</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white fw-bold fs-6" [class.active]="activeTab === 'tab3'" (click)="setActiveTab('tab3')">Desactivar Rol</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div id="pane-asignar-rol" class="tab-pane" [class.active]="activeTab === 'tab1'" [class.show]="activeTab === 'tab1'" id="tab1">
+                        <form [formGroup]="buscarUsuarioForm" autocomplete="off">
+                            <div class="border rounded-3 mb-4 border-secondary container-permission">
+                                <h5 id="register-permission-form_title" class="ps-3 pt-2 pb-2 rounded-top-3 text-uppercase text-white fs-6">Información del Usuario</h5>
+                                <div class="row row-cols-lg-2 m-0">
+                                    <div class="mb-3 mt-3">
+                                        <label for="exampleInputEmail1" class="form-label text-white">Seleccionar propiedad</label>
+                                        <select class="form-select text-white input-register-permission border-secondary" id="floatingSelect" aria-label="Floating label select example"  formControlName="propiedadUsuarioSeleccionada">
+                                            <option  value="">Seleccionar</option>
+                                            <option value="id">Codigo</option>
+                                            <option value="nombres">Nombres</option>
+                                            <option value="apellidos">Apellidos</option>
+                                        </select>                             
+                                    </div>
+                                    <div class="mb-3 mt-3">
+                                        <label for="exampleInputEmail1" class="form-label text-white">Seleccionar Usuario</label>
+                                        <input id="input-user" type="text" class="form-control text-white border-secondary input-user" aria-describedby="emailHelp" formControlName="usuario">                          
+                                    </div>
+                                    <div class="mb-3 mt-3">
+                                        <button type="submit" class="btn btn-primary" (click)="buscarUsuario()">Buscar Usuario</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <form *ngIf="dataPerson && dataPerson.length > 0">
+                            <div class="border rounded-3 mb-4 border-secondary container-permission">
+                                <div class="row row-cols-lg-1 m-0 mt-3">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <td>Codigo</td>
+                                                    <td>Nombres</td>
+                                                    <td>Apellidos</td>
+                                                    <td>Rol</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let item of dataPerson">
+                                                    <td class="text-white bg-transparent">{{item.id}}</td>
+                                                    <td class="text-white bg-transparent">{{item.nombres}}</td>
+                                                    <td class="text-white bg-transparent">{{item.apellidos}}</td>
+                                                    <td class="bg-transparent">
+                                                        <select class="form-select text-white input-register-permission border-secondary" id="floatingSelect" aria-label="Floating label select example">
+                                                            <option selected>Seleccionar</option>
+                                                            <option value="superadmin">Super Administrador</option>
+                                                            <option value="admin">Administrador</option>
+                                                            <option value="especialista">Especialista</option>
+                                                            <option value="paciente">Paciente</option>
+                                                        </select> 
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Asignar Rol</button>
+                        </form>
+                    </div>
+                    <div id="pane-modificar-rol" class="tab-pane" [class.active]="activeTab === 'tab2'" [class.show]="activeTab === 'tab2'" id="tab2">
+                        <form [formGroup]="buscarUsuarioForm" autocomplete="off">
+                            <div class="border rounded-3 mb-4 border-secondary container-permission">
+                                <h5 id="register-permission-form_title" class="ps-3 pt-2 pb-2 rounded-top-3 text-uppercase text-white fs-6">Información del Usuario</h5>
+                                <div class="row row-cols-lg-2 m-0">
+                                    <div class="mb-3 mt-3">
+                                        <label for="exampleInputEmail1" class="form-label text-white">Seleccionar propiedad</label>
+                                        <select class="form-select text-white input-register-permission border-secondary" id="floatingSelect" aria-label="Floating label select example"  formControlName="propiedadUsuarioSeleccionada">
+                                            <option  value="">Seleccionar</option>
+                                            <option value="id">Codigo</option>
+                                            <option value="nombres">Nombres</option>
+                                            <option value="apellidos">Apellidos</option>
+                                        </select>                             
+                                    </div>
+                                    <div class="mb-3 mt-3">
+                                        <label for="exampleInputEmail1" class="form-label text-white">Seleccionar Usuario</label>
+                                        <input id="input-user" type="text" class="form-control text-white border-secondary input-user" aria-describedby="emailHelp" formControlName="usuario">                          
+                                    </div>
+                                    <div class="mb-3 mt-3">
+                                        <button type="submit" class="btn btn-primary" (click)="buscarUsuario()">Buscar Usuario</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <form *ngIf="dataPerson && dataPerson.length > 0">
+                            <div class="border rounded-3 mb-4 border-secondary container-permission">
+                                <div class="row row-cols-lg-1 m-0 mt-3">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <td>Codigo</td>
+                                                    <td>Nombres</td>
+                                                    <td>Apellidos</td>
+                                                    <td>Rol</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let item of dataPerson">
+                                                    <td class="text-white bg-transparent">{{item.id}}</td>
+                                                    <td class="text-white bg-transparent">{{item.nombres}}</td>
+                                                    <td class="text-white bg-transparent">{{item.apellidos}}</td>
+                                                    <td class="bg-transparent">
+                                                        <select class="form-select text-white input-register-permission border-secondary" id="floatingSelect" aria-label="Floating label select example">
+                                                            <option selected>Seleccionar</option>
+                                                            <option value="superadmin">Super Administrador</option>
+                                                            <option value="admin">Administrador</option>
+                                                            <option value="especialista">Especialista</option>
+                                                            <option value="paciente">Paciente</option>
+                                                        </select> 
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Asignar Rol</button>
+                        </form>
+                    </div>
+                    <div id="pane-desactivar-rol" class="tab-pane" [class.active]="activeTab === 'tab3'" [class.show]="activeTab === 'tab3'" id="tab3">
+                        <form [formGroup]="buscarUsuarioForm" autocomplete="off">
+                            <div class="border rounded-3 mb-4 border-secondary container-permission">
+                                <h5 id="register-permission-form_title" class="ps-3 pt-2 pb-2 rounded-top-3 text-uppercase text-white fs-6">Información del Usuario</h5>
+                                <div class="row row-cols-lg-2 m-0">
+                                    <div class="mb-3 mt-3">
+                                        <label for="exampleInputEmail1" class="form-label text-white">Seleccionar propiedad</label>
+                                        <select class="form-select text-white input-register-permission border-secondary" id="floatingSelect" aria-label="Floating label select example"  formControlName="propiedadUsuarioSeleccionada">
+                                            <option  value="">Seleccionar</option>
+                                            <option value="id">Codigo</option>
+                                            <option value="nombres">Nombres</option>
+                                            <option value="apellidos">Apellidos</option>
+                                        </select>                             
+                                    </div>
+                                    <div class="mb-3 mt-3">
+                                        <label for="exampleInputEmail1" class="form-label text-white">Seleccionar Usuario</label>
+                                        <input id="input-user" type="text" class="form-control text-white border-secondary input-user" aria-describedby="emailHelp" formControlName="usuario">                          
+                                    </div>
+                                    <div class="mb-3 mt-3">
+                                        <button type="submit" class="btn btn-primary" (click)="buscarUsuario()">Buscar Usuario</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <form *ngIf="dataPerson && dataPerson.length > 0">
+                            <div class="border rounded-3 mb-4 border-secondary container-permission">
+                                <div class="row row-cols-lg-1 m-0 mt-3">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <td>Codigo</td>
+                                                    <td>Nombres</td>
+                                                    <td>Apellidos</td>
+                                                    <td>Rol</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let item of dataPerson">
+                                                    <td class="text-white bg-transparent">{{item.id}}</td>
+                                                    <td class="text-white bg-transparent">{{item.nombres}}</td>
+                                                    <td class="text-white bg-transparent">{{item.apellidos}}</td>
+                                                    <td class="bg-transparent">
+                                                        <select class="form-select text-white input-register-permission border-secondary" id="floatingSelect" aria-label="Floating label select example">
+                                                            <option selected>Seleccionar</option>
+                                                            <option value="superadmin">Desactivar</option>
+                                                        </select> 
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Asignar Rol</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</app-layout>
