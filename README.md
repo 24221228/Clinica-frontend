@@ -1,27 +1,45 @@
-# SistemaClinica
+# Sistema de Citas Web para Clínica RV. Medic
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
+Este es un proyecto de sistema de citas web desarrollado con Angular para el frontend, NestJS para el backend y PostgreSQL como base de datos.
 
-## Development server
+## Descripción del Proyecto
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Este sistema de citas web permite a los pacientes programar citas médicas de manera fácil y eficiente. Proporciona una interfaz intuitiva para la reserva y gestión de citas, así como información relevante sobre los médicos y servicios disponibles en la clínica RV. Medic.
 
-## Code scaffolding
+## Características
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Reserva de Citas:** Los pacientes pueden seleccionar un médico, fecha y hora convenientes para programar una cita.
+- **Gestión de Citas:** Los usuarios pueden ver, editar o cancelar sus citas existentes.
+- **Información del Médico:** Descripciones detalladas de los médicos, especialidades y servicios disponibles.
 
-## Build
+## Tecnologías Utilizadas
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- **Angular:** Desarrollo del frontend.
+- **NestJS:** Desarrollo del backend.
+- **PostgreSQL:** Base de datos para almacenar la información.
 
-## Running unit tests
+## Requisitos del Sistema
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- Node.js (versión recomendada)
+- Angular CLI
+- NestJS
+- PostgreSQL
 
-## Running end-to-end tests
+## Instalación y Configuración
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+1. Clona el repositorio: `git clone https://github.com/tu-usuario/sistema-citas-web.git`
+2. Configura el backend (NestJS) y la base de datos (PostgreSQL).
+3. Instala las dependencias: `npm install` en las carpetas `frontend` y `backend`.
+4. Ejecuta la aplicación: `npm start` para iniciar tanto el frontend como el backend.
 
-## Further help
+## Contribuciones
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+¡Contribuciones son bienvenidas! Si encuentras algún problema o deseas mejorar el proyecto, crea un *issue* o envía un *pull request*.
+
+## Licencia
+
+Este proyecto está bajo la licencia [MIT](LICENSE).
+
+---
+
+¡Gracias por usar el Sistema de Citas Web para Clínica RV. Medic! Esperamos que sea útil para tu clínica y pacientes.
