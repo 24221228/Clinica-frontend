@@ -1,0 +1,28 @@
+<div class="border rounded-3 mb-4 border-secondary container-permission">
+    <table class="table mt-2">
+      <thead class="table-light">
+        <tr>
+          <td>Codigo</td>
+          <td>Nombres</td>
+          <td>Apellidos</td>
+          <td>Acción</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of dataPerson">
+          <td class="text-white bg-transparent w-25">{{ item.id }}</td>
+          <td class="text-white bg-transparent w-25">{{ item.nombres }}</td>
+          <td class="text-white bg-transparent w-25">{{ item.apellidos }}</td>
+          <td class="bg-transparent w-25">
+            <button *ngIf="statusValueUpdate === true" type="submit" class="btn-update-user-status btn btn-secondary p-1" (click)="updateUserStatus(item)">
+              Activar Cuenta
+            </button>
+            <button *ngIf="statusValueUpdate === false" type="submit" class="btn-update-user-status btn btn-secondary p-1" (click)="updateUserStatus(item)">
+              Desactivar Cuenta
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+  

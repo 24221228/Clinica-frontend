@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Person } from '../../interfaces/login.interface';
 import { SearchPerson } from '../../interfaces/searchPerson.interface';
 import { UpdatePerson } from '../../interfaces/update.interface';
@@ -32,6 +32,16 @@ export class PersonasService {
           throw error;
         })
       );
+      /*return this.http.post<Person[]>(url, { property, searchPerson }).pipe(
+        catchError((error: any) => {
+          if (error instanceof HttpErrorResponse && error.error && error.error.message) {
+            // Aquí no se lanza una excepción, simplemente se devuelve un array vacío
+            return of([]);
+          } else {
+            throw error;
+          }
+        })
+      );*/
   }
 
   update(id: number, updatePerson: UpdatePerson): Observable<Person>{

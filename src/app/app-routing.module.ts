@@ -66,6 +66,11 @@ const routes: Routes = [
     loadChildren: () => import('./modules/update-password/update-password.module').then(m => m.UpdatePasswordModule)
   },
   {
+    path: 'seguridad',
+    loadChildren: () => import('./modules/security/security.module').then(m => m.SecurityModule),
+    data: { 'routeName': 'Seguridad' }
+  },
+  {
     path: 'error',
     loadChildren: () => import('./modules/error/error.module').then(m => m.ErrorModule)
   },

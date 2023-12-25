@@ -28,5 +28,13 @@ export interface Person{
     direccion_completa: string,
     ciudad: string,
     pais: string,
-    numero_telefono: string
+    numero_telefono: string,
+    user: User
+}
+
+export interface User{
+    correo_electronico: string;
+    estatus: string;
+    id: number;
+    roles: string[]
 }

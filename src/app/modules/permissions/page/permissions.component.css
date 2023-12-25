@@ -1,6 +1,9 @@
 .nav-link.active{
     color: #212529!important;
 }
+.nav-item{
+    cursor: pointer;
+}
 .container-permission{
     background-color: var(--col-black);
 }

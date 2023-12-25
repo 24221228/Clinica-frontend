@@ -5,6 +5,9 @@
     --col-black: #202B41;
     --col-purple: #7763FB;
 }
+body{
+    background-color: #1A2131;
+}
 .place-items-center{
     place-items: center;
 }

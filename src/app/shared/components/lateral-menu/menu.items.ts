@@ -9,6 +9,7 @@ export const menuItems: Record<string, MenuItem[]> = {
       { label: 'Reportes', link: '/reporte', icon: 'bi bi-bar-chart' },
       { label: 'Permisos', link: '/permisos', icon: 'bi bi-person-fill-gear' },
       { label: 'Perfil', link: '/perfil', icon: 'bi bi-person-circle' },
+      { label: 'Seguridad', link: '/seguridad', icon: 'bi bi-key' },
       { label: 'Cerrar Sesión', link: '', icon: 'bi bi-door-open' }
     ],
     admin: [

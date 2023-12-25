@@ -23,9 +23,8 @@ export class HeaderComponent implements OnInit{
 
   }
   ngOnInit() {
-    //this.userData = this.globalService.getDataFromStorage<string>('correo_electronico') || "";
-    
     this.personData = this.globalService.getDataFromStorage<Person[]>('person')?.[0];
     this.routeName = this.route.snapshot.data["routeName"];
+    console.log(this.routeName)
   }
 }

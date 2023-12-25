@@ -1,0 +1,12 @@
+.nav-item{
+    cursor: pointer;
+}
+.nav-link.active{
+    color: #212529!important;
+}
+.container-security{
+    background-color: var(--col-black);
+}
+#register-permission-form_title{
+    background-color: var(--col-dark-black);
+}

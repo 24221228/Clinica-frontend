@@ -1,0 +1,27 @@
+<app-layout>
+    <div class="bg-transparent">
+      <div class="row row-cols-lg-1 m-0 mt-3 p-3">
+        <div class="col-lg-12">
+          <ul class="nav nav-tabs mt-lg-0 mt-md-5 mb-5 border-0">
+            <li class="nav-item">
+              <a class="nav-link text-white fw-bold fs-6" [class.active]="activeTab === 'tab1'" (click)="setActiveTab('tab1')">Activar usuario</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white fw-bold fs-6" [class.active]="activeTab === 'tab2'" (click)="setActiveTab('tab2')">Desactivar usuario</a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div id="pane-asignar-rol" class="tab-pane" [class.active]="activeTab === 'tab1'" [class.show]="activeTab === 'tab1'" id="tab1">
+              <app-search-form [buscarUsuarioForm]="buscarUsuarioFormTab1" (search)="buscarUsuario(false)"></app-search-form>
+              <app-user-table *ngIf="dataPersonTab1 && dataPersonTab1.length > 0" [dataPerson]="dataPersonTab1" [statusValueUpdate]="true" (userStatusUpdated)="handleUserStatusUpdated(false)"></app-user-table>
+            </div>
+            <div id="pane-modificar-rol" class="tab-pane" [class.active]="activeTab === 'tab2'" [class.show]="activeTab === 'tab2'" id="tab2">
+              <app-search-form [buscarUsuarioForm]="buscarUsuarioFormTab2" (search)="buscarUsuario(true)"></app-search-form>
+              <app-user-table *ngIf="dataPersonTab2 && dataPersonTab2.length > 0" [dataPerson]="dataPersonTab2" [statusValueUpdate]="false" (userStatusUpdated)="handleUserStatusUpdated(true)"></app-user-table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </app-layout>
+  
