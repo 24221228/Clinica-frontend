@@ -65,8 +65,7 @@ export class PermissionsComponent implements OnInit{
 
         if(data?.length == 0){
           this.toastService.error('Usuario no encontrado');
-        }
-        
+        } 
 
         if (this.activeTab === 'tab1') {
           this.dataPersonTab1 = data || [];

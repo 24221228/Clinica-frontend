@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { Login, ErrorLogin } from 'src/app/core/presentation/interfaces/index';
 import { AuthService } from 'src/app/core/presentation/services/authentication/auth.service';
 import { GlobalService } from 'src/app/core/presentation/services/global.service';
-import { RSAHelper } from 'src/app/shared/helpers/RSA.helper';
 
 @Component({
   selector: 'app-login',
@@ -30,17 +29,12 @@ export class LoginComponent implements OnInit{
   }
   ngOnInit(): void {
     this.activeTab = 'tab1';
-    /*if(this.iniciarSesionForm.valid){
-      console.log("Sesion valida!");
-    }else{
-      console.log("Sesion invalida!");
-    }*/
   }
   login():void{
     const {correo_electronico, contraseña} = this.iniciarSesionForm.value;
     this.authService.login(correo_electronico, contraseña).subscribe({
       next: (user: Login) => {
-        console.log("usuario ->",user);
+        //console.log("usuario ->",user);
         const data = JSON.stringify(user);
         this.globalService.saveDataStorage("USER_DATA", data);
         //console.log(this.globalService.getDataFromStorage<String>('token'));
