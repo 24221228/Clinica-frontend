@@ -1,4 +1,3 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -59,14 +58,7 @@ export class SecurityComponent implements OnInit{
 
         const data = await this.personasService.searchByProperty(propiedadUsuarioSeleccionada, searchPersonDTO)
           .pipe(
-            catchError((error: any) => {
-              console.log(error);
-              /*if (error instanceof HttpErrorResponse && error.error && error.error.message) {
-                this.toastService.error('Usuario no encontrado');
-              } else {
-                this.toastService.error('Error al obtener el usuario. Por favor, inténtelo de nuevo.');
-              }
-              return of([]);*/
+            catchError((_error: any) => {
               return of([]);
             })
           )

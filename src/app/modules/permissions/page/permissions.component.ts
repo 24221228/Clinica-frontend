@@ -1,12 +1,10 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { Observable, catchError, from, of } from 'rxjs';
+import { catchError, of } from 'rxjs';
 import { Person } from 'src/app/core/presentation/interfaces/login.interface';
 import { SearchPerson } from 'src/app/core/presentation/interfaces/searchPerson.interface';
 import { PersonasService } from 'src/app/core/presentation/services/personas/personas.service';
-import { UsersService } from 'src/app/core/presentation/services/users/users.service';
 
 @Component({
   selector: 'app-permissions',
@@ -14,19 +12,26 @@ import { UsersService } from 'src/app/core/presentation/services/users/users.ser
   styleUrls: ['./permissions.component.css']
 })
 export class PermissionsComponent implements OnInit{
-  buscarUsuarioForm: FormGroup;
   activeTab = 'tab1';
-  dataPerson: Person[] | undefined;
-  errorMessage: string = "";
+  dataPersonTab1: Person[] = [];
+  dataPersonTab2: Person[] = [];
+
+  buscarUsuarioFormTab1: FormGroup;
+  buscarUsuarioFormTab2: FormGroup;
+  
   constructor(
     private formBuilder: FormBuilder,
     private personsService: PersonasService,
     private toastService: ToastrService){
-    this.buscarUsuarioForm = this.formBuilder.group({
-      propiedadUsuarioSeleccionada: ['', [Validators.required]],
-      usuario: ['', [Validators.required, Validators.minLength(6)]]
-    });
-    this.dataPerson = [];
+      this.buscarUsuarioFormTab1 = this.formBuilder.group({
+        propiedadUsuarioSeleccionada: ['', [Validators.required]],
+        usuario: ['', [Validators.required, Validators.minLength(6)]]
+      });
+  
+      this.buscarUsuarioFormTab2 = this.formBuilder.group({
+        propiedadUsuarioSeleccionada: ['', [Validators.required]],
+        usuario: ['', [Validators.required, Validators.minLength(6)]]
+      });
   }
 
   setActiveTab(tabId: string) {
@@ -37,31 +42,46 @@ export class PermissionsComponent implements OnInit{
     this.activeTab = 'tab1';
   }
 
-  async buscarUsuario(): Promise<Person[]> {
+  async buscarUsuario(): Promise<void> {
     try {
-      const { propiedadUsuarioSeleccionada, usuario } = this.buscarUsuarioForm.value;
-  
-      const searchPersonDTO: SearchPerson = {
-        [propiedadUsuarioSeleccionada]: propiedadUsuarioSeleccionada === 'id' ? parseInt(usuario, 10) : usuario
-      };
-  
-      this.dataPerson = await this.personsService.searchByProperty(propiedadUsuarioSeleccionada, searchPersonDTO)
+      const formGroup = this.activeTab === 'tab1' ? this.buscarUsuarioFormTab1 : this.buscarUsuarioFormTab2;
+      const { propiedadUsuarioSeleccionada, usuario } = formGroup.value;
+      
+      if (propiedadUsuarioSeleccionada === '') {
+        this.toastService.warning('Debe seleccionar una propiedad válida');
+      }else{
+        const searchPersonDTO: SearchPerson = {
+          [propiedadUsuarioSeleccionada]: propiedadUsuarioSeleccionada === 'id' ? parseInt(usuario, 10) : usuario,
+          estatus: true
+        };
+
+        const data = await this.personsService.searchByProperty(propiedadUsuarioSeleccionada, searchPersonDTO)
         .pipe(
-          catchError((error: any) => {
-            if (error instanceof HttpErrorResponse && error.error && error.error.message) {
-              this.toastService.error("Usuario no encontrado");
-            } else {
-              this.errorMessage = 'Error al obtener el usuario. Por favor, inténtelo de nuevo.';
-            }
-            // Retornar un array vacío en caso de error para evitar problemas de tipo
+          catchError((_error: any) => {
             return of([]);
           })
         )
         .toPromise();
-      return this.dataPerson || [];
+
+        if(data?.length == 0){
+          this.toastService.error('Usuario no encontrado');
+        }
+
+        if (this.activeTab === 'tab1') {
+          this.dataPersonTab1 = data || [];
+        } else {
+          this.dataPersonTab2 = data || [];
+        }
+      }
     } catch (error) {
       throw error;
     }
+  }
+
+  // Manejar el evento userStatusUpdated
+  handleUserStatusUpdated(): void {
+    // Actualizar la lista de personas
+    this.buscarUsuario();
   }
   
 }

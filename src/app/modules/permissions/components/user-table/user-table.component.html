@@ -1,0 +1,40 @@
+<form *ngIf="dataPerson && dataPerson.length > 0">
+    <div class="border rounded-3 mb-4 border-secondary container-permission">
+        <div class="row row-cols-lg-1 m-0 mt-3">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="table-light">
+                        <tr>
+                            <td>Codigo</td>
+                            <td>Nombres</td>
+                            <td>Apellidos</td>
+                            <td>Rol</td>
+                            <td>Acción</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of dataPerson">
+                            <td class="text-white bg-transparent">{{item.id}}</td>
+                            <td class="text-white bg-transparent">{{item.nombres}}</td>
+                            <td class="text-white bg-transparent">{{item.apellidos}}</td>
+                            <td class="bg-transparent">
+                                <select class="form-select text-white input-register-permission border-secondary" id="floatingSelect" aria-label="Floating label select example">
+                                    <option selected>Seleccionar</option>
+                                    <option value="superadmin">Super Administrador</option>
+                                    <option value="admin">Administrador</option>
+                                    <option value="especialista">Especialista</option>
+                                    <option value="paciente">Paciente</option>
+                                </select> 
+                            </td>
+                            <td class="bg-transparent">
+                                <button type="submit" class="btn-update-user-status btn btn-secondary p-1">
+                                    Asignar Rol
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</form>

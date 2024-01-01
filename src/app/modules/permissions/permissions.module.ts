@@ -6,11 +6,15 @@ import { PermissionsComponent } from './page/permissions.component';
 import { LayoutModule } from 'src/app/shared/layout/layout.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { UserTableComponent } from './components/user-table/user-table.component';
+import { SearchFormComponent } from './components/search-form/search-form.component';
 
 
 @NgModule({
   declarations: [
-    PermissionsComponent
+    PermissionsComponent,
+    UserTableComponent,
+    SearchFormComponent
   ],
   imports: [
     CommonModule,

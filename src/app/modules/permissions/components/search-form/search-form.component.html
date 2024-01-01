@@ -1,0 +1,25 @@
+<form [formGroup]="buscarUsuarioForm" autocomplete="off">
+    <div class="border rounded-3 mb-4 border-secondary container-permission">
+        <h5 id="register-permission-form_title" class="ps-3 pt-2 pb-2 rounded-top-3 text-uppercase text-white fs-6">Información del Usuario</h5>
+        <div class="row row-cols-lg-2 m-0">
+            <div class="mb-3 mt-3">
+                <label for="exampleInputEmail1" class="form-label text-white">Seleccionar propiedad</label>
+                <select class="form-select text-white input-register-permission border-secondary" id="floatingSelect" aria-label="Floating label select example"  formControlName="propiedadUsuarioSeleccionada">
+                    <option  value="">Seleccionar</option>
+                    <option value="id">Codigo</option>
+                    <option value="nombres">Nombres</option>
+                    <option value="apellidos">Apellidos</option>
+                </select>                             
+            </div>
+            <div class="mb-3 mt-3">
+                <label for="exampleInputEmail1" class="form-label text-white">Seleccionar Usuario</label>
+                <input id="input-user" type="text" class="form-control text-white border-secondary input-user" aria-describedby="emailHelp" formControlName="usuario">                          
+            </div>
+            <div class="mb-3 mt-3">
+                <!--<button type="submit" class="btn btn-primary" (click)="buscarUsuario()">Buscar Usuario</button>-->
+
+                <button type="submit" class="btn btn-primary" (click)="search.emit(true)">Buscar Usuario</button>
+            </div>
+        </div>
+    </div>
+</form>
