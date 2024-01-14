@@ -5,7 +5,6 @@ import { LateralMenuComponent } from './lateral-menu/lateral-menu.component';
 import { HeaderComponent } from './header/header.component';
 import { RouterModule } from '@angular/router';
 import { CalendarComponent } from './calendar/calendar.component';
-import { FullCalendarModule } from '@fullcalendar/angular';
 
 @NgModule({
   declarations: [
@@ -15,12 +14,12 @@ import { FullCalendarModule } from '@fullcalendar/angular';
   ],
   imports: [
     CommonModule,
-    RouterModule,
-    FullCalendarModule
+    RouterModule
   ],
   exports: [
     LateralMenuComponent,
-    HeaderComponent
+    HeaderComponent,
+    CalendarComponent
   ]
 })
 export class SharedComponentsModule { }

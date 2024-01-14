@@ -1,7 +1,15 @@
 #register-appointment-form_title,
-.input-register-appointment{
+.input-register-appointment,
+.modal-content{
     background-color: var(--col-dark-black);
 }
 .container-register-appointment{
     background-color: var(--col-black);
+}
+.table-hover>tbody>tr:hover>*{
+    --bs-table-bg-state: #4CAF50!important;
+}
+tr.selected {
+    background-color: #4CAF50;
+    color: #fff;
 }

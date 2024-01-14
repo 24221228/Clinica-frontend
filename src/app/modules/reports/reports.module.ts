@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ReportsRoutingModule } from './reports-routing.module';
 import { ReportsComponent } from './page/reports.component';
 import { LayoutModule } from 'src/app/shared/layout/layout.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { LayoutModule } from 'src/app/shared/layout/layout.module';
   imports: [
     CommonModule,
     ReportsRoutingModule,
-    LayoutModule
+    LayoutModule,
+    FormsModule
   ]
 })
 export class ReportsModule { }

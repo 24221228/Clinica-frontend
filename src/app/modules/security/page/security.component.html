@@ -12,6 +12,7 @@
           </ul>
           <div class="tab-content">
             <div id="pane-asignar-rol" class="tab-pane" [class.active]="activeTab === 'tab1'" [class.show]="activeTab === 'tab1'" id="tab1">
+              <!--<app-calendar></app-calendar>-->
               <app-search-form [buscarUsuarioForm]="buscarUsuarioFormTab1" (search)="buscarUsuario(false)"></app-search-form>
               <app-user-table *ngIf="dataPersonTab1 && dataPersonTab1.length > 0" [dataPerson]="dataPersonTab1" [statusValueUpdate]="true" (userStatusUpdated)="handleUserStatusUpdated(false)"></app-user-table>
             </div>

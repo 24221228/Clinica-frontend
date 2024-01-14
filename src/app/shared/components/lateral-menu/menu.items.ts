@@ -21,8 +21,9 @@ export const menuItems: Record<string, MenuItem[]> = {
     ],
     especialista: [
       { label: 'Dashboard', link: '/dashboard', icon: 'bi bi-house-door' },
-      { label: 'Ver Citas', link: '/ver-citas', icon: '' },
+      { label: 'Ver Citas', link: '/citas', icon: 'bi bi-calendar4-week' },
       { label: 'Registros', link: '/registro', icon: 'bi bi-file-earmark-text' },
+      { label: 'Reportes', link: '/reporte', icon: 'bi bi-bar-chart' },
       { label: 'Perfil', link: '/perfil', icon: 'bi bi-person-circle' },
       { label: 'Cerrar Sesión', link: '', icon: 'bi bi-door-open' },
     ],

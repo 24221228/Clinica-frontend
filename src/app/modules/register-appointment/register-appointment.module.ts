@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { RegisterAppointmentRoutingModule } from './register-appointment-routing.module';
 import { RegisterAppointmentComponent } from './page/register-appointment.component';
 import { LayoutModule } from 'src/app/shared/layout/layout.module';
+import { SharedComponentsModule } from 'src/app/shared/components/components.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,7 +15,9 @@ import { LayoutModule } from 'src/app/shared/layout/layout.module';
   imports: [
     CommonModule,
     RegisterAppointmentRoutingModule,
-    LayoutModule
+    LayoutModule,
+    SharedComponentsModule,
+    FormsModule
   ]
 })
 export class RegisterAppointmentModule { }

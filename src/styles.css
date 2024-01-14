@@ -39,3 +39,26 @@ body{
 .table-hover>tbody>tr:hover>*{
     --bs-table-bg-state: var(--col-dark-black)!important;
 }
+.fc-daygrid-day {
+    background-color: #ffffff; /* Cambia el color a rojo (puedes usar cualquier color hexadecimal o nombre) */
+    color: #3333; /* Cambia el color del texto a blanco o el color deseado */
+}
+.fc .fc-toolbar-title{
+    color: white!important;
+    font-size: 12px;
+}
+.fc .fc-button-group > .fc-button {
+    font-size: 10!important;
+}
+.fc .fc-button{
+    font-size: .7em;
+}
+.fc-day {
+    height: 10px; /* Ajusta la altura según tus preferencias */
+    width: 10px; /* Ajusta el ancho según tus preferencias */
+    border: 1px solid #ddd; /* Agrega un borde para separar los días */
+    box-sizing: border-box;
+}
+.control-error{
+    color: white!important;
+}

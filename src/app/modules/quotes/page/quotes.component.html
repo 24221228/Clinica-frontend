@@ -1,0 +1,61 @@
+<app-layout>
+    <div class="bg-transparent">
+        <div class="row row-cols-lg-1 m-0 mt-3 p-3">
+            <div class="col-lg-12 d-lg-flex">
+                <div class="col-4">
+                    <app-calendar (dateSelected)="actualizarCitasMedicas($event)"></app-calendar>
+                </div>
+                <div class="col-8" *ngIf="fechaSeleccionada && citasFiltradas.length > 0">
+                    <div class="d-flex ms-4 mb-3">
+                      <form autocomplete="off" class="w-100 d-flex ms-2">
+                        <input type="text" class="form-control w-50" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <button class="btn btn-primary ms-3">
+                          Buscar Cita
+                        </button>
+                      </form>
+                    </div>
+                    <div class="ms-4">
+                        <div class="container mt-4">
+                            <h2 class="text-white mb-3" style="font-size: 17px;">Lista de Citas Médicas</h2>
+                            <table class="table table-striped">
+                              <thead>
+                                <tr>
+                                  <th scope="col">#</th>
+                                  <th scope="col">Fecha</th>
+                                  <th scope="col">Hora</th>
+                                  <th scope="col">Paciente</th>
+                                  <th scope="col">Especialidad</th>
+                                  <th scope="col">Acción</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let cita of citasFiltradas">
+                                  <th scope="row">{{ cita.id }}</th>
+                                  <td>{{ cita.fecha }}</td>
+                                  <td>{{ cita.hora }}</td>
+                                  <td>{{ cita.paciente }}</td>
+                                  <td>{{ cita.especialidad }}</td>
+                                  <td>
+                                    <button class="btn btn-info" (click)="verDetalle(cita)">Ver Detalle</button>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                    </div>
+                    <div *ngIf="fechaSeleccionada && citasFiltradas.length === 0" class="ms-4 text-white">
+                        <p>No hay citas médicas asociadas a la fecha seleccionada.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 d-lg-flex mt-4">
+              <div class="col-4 d-block">
+                <p style="background-color: #202B41;" class="p-2 mb-0 text-center text-white">Seleccionar Especialidad</p>
+                <ul class="dropdown-menu d-block w-100 rounded-0 position-relative">
+                  <li *ngFor="let especialidad of especialidades"><a class="dropdown-item text-center" href="#">{{especialidad}}</a></li>
+                </ul>
+              </div>
+            </div>
+        </div>
+    </div>
+</app-layout>

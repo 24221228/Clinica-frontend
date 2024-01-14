@@ -3,80 +3,170 @@
         <div class="row row-cols-lg-1 m-0 mt-3 p-3">
             <div class="col-lg-12">
                 <h5 class="text-white mb-4 border-bottom pb-3">Registrar Cita</h5>
-                <form>
-                    <div class="border rounded-3 mb-4 border-secondary container-register-appointment">
-                        <h5 id="register-appointment-form_title" class="ps-3 pt-2 pb-2 rounded-top-3 text-uppercase text-white fs-6">Información del Paciente</h5>
-                        <div class="row row-cols-lg-3 m-0">
-                            <div class="mb-3 mt-3">
-                                <label for="exampleInputEmail1" class="form-label text-white">Seleccionar Paciente</label>
-                                <select class="form-select text-white input-register-appointment border-secondary" id="floatingSelect" aria-label="Floating label select example">
-                                    <option selected>Seleccionar</option>
-                                    <option value="1">Hombre</option>
-                                    <option value="2">Mujer</option>
-                                </select>                             
-                            </div>
-                        </div>
-                    </div>
+                <div>
                     <div class="border rounded-3 mb-4 border-secondary container-register-appointment">
                         <h5 id="register-appointment-form_title" class="ps-3 pt-2 pb-2 rounded-top-3 text-uppercase text-white fs-6">Información del especialista</h5>
                         <div class="row row-cols-lg-3 m-0">
                             <div class="mb-3 mt-3">
                                 <label for="exampleInputEmail1" class="form-label text-white">Seleccione especialidad</label>
-                                <select class="form-select text-white input-register-appointment border-secondary" id="floatingSelect" aria-label="Floating label select example">
+                                <select id="especialidadSelect" class="form-select text-white input-register-appointment border-secondary" id="floatingSelect" aria-label="Floating label select example" [(ngModel)]="especialidadSeleccionada" name="especialidadSeleccionada" (change)="cambiarEspecialidad()">
                                     <option selected>Seleccionar</option>
-                                    <option value="1">Padre</option>
-                                    <option value="2">Madre</option>
-                                    <option value="2">Cónyugue</option>
-                                    <option value="2">Tio(a)</option>
-                                    <option value="2">Sobrino(a)</option>
-                                    <option value="2">Hijo(a)</option>
-                                    <option value="2">Primo(a)</option>
-                                    <option value="2">Hermano(a)</option>
-                                    <option value="2">Amigo(a)</option>
+                                    <option [value]="especialidad.id" *ngFor="let especialidad of especialidadesData">{{especialidad.service}}</option>
                                 </select>   
                             </div>
-                            <div class="mb-3 mt-3">
+                            <div class="mb-3 mt-3" *ngIf="especialidadSeleccionada !== null">
                                 <label for="exampleInputEmail1" class="form-label text-white">Seleccione especialista</label>
-                                <select class="form-select text-white input-register-appointment border-secondary" id="floatingSelect" aria-label="Floating label select example">
+                                <select id="especialistaSelect" class="form-select text-white input-register-appointment border-secondary" id="floatingSelect" aria-label="Floating label select example" name="especialistaSeleccionado" [(ngModel)]="especialistaSeleccionado">
                                     <option selected>Seleccionar</option>
-                                    <option value="1">Padre</option>
-                                    <option value="2">Madre</option>
-                                    <option value="2">Cónyugue</option>
-                                    <option value="2">Tio(a)</option>
-                                    <option value="2">Sobrino(a)</option>
-                                    <option value="2">Hijo(a)</option>
-                                    <option value="2">Primo(a)</option>
-                                    <option value="2">Hermano(a)</option>
-                                    <option value="2">Amigo(a)</option>
+                                    <option *ngFor="let especialista of especialistasSeleccionados" [value]="especialista.id">
+                                        {{ especialista.nombres }} {{ especialista.apellidos }}
+                                    </option>
                                 </select>   
                             </div>
                         </div>
                     </div>
                     <div class="border rounded-3 mb-4 border-secondary container-register-appointment">
-                        <h5 id="register-appointment-form_title" class="ps-3 pt-2 pb-2 rounded-top-3 text-uppercase text-white fs-6">Cita</h5>
-                        <div class="row row-cols-lg-3 m-0">
-                            <div class="mb-3 mt-3">
-                                <label for="exampleInputEmail1" class="form-label text-white">Fecha de la Cita</label>
-                                <input id="input-username" type="date" class="form-control text-white border-secondary input-register-appointment" aria-describedby="emailHelp">
-                            </div>
-                            <div class="mb-3 mt-3">
-                                <label for="exampleInputEmail1" class="form-label text-white">Hora de la Cita</label>
-                                <input id="input-username" type="time" class="form-control text-white border-secondary input-register-appointment" aria-describedby="emailHelp">
-                            </div>
-                            <div class="mb-3 mt-3">
-                                <label for="exampleInputEmail1" class="form-label text-white">Motivo</label>
-                                <input id="input-username" type="text" class="form-control text-white border-secondary input-register-appointment" aria-describedby="emailHelp">
-                            </div>
-                            <div class="mb-3 mt-3 text-white">
-                                <input id="input-username" type="checkbox" class="form-check-input input-register-appointment">
-                                Acepto los términos y condiciones del servicio y la política de privacidad.
+                        <h5 id="register-appointment-form_title" class="ps-3 pt-2 pb-2 rounded-top-3 text-uppercase text-white fs-6">Información del Paciente</h5>
+                        <div class="row row-cols-lg-1 m-0">
+                            <form class="row row-cols-lg-3" (ngSubmit)="buscarPacientes()">
+                                <div class="col-4 mb-3 mt-3">
+                                    <label for="exampleInputEmail1" class="form-label text-white">Seleccionar Propiedad</label>
+                                    <select id="propiedadSelect" class="form-select text-white input-register-appointment border-secondary" [(ngModel)]="propiedadSeleccionada" name="propiedadSeleccionada">
+                                        <option selected>Seleccionar</option>
+                                        <option value="idUsuario">Codigo</option>
+                                        <option value="name">Nombres</option>
+                                        <option value="lastName">Apellidos</option>
+                                    </select>                         
+                                </div>
+                                <div class="col-4 mb-3 mt-3">
+                                    <label for="exampleInputEmail1" class="form-label text-white">Paciente</label>
+                                    <input id="valorBusqueda" type="text" class="form-control text-white border-secondary input-register-appointment" [(ngModel)]="valorBusqueda" name="valorBusqueda">
+                                </div>
+                                <div class="col-4 mb-3 mt-3 d-grid">
+                                    <label for="exampleInputEmail1" class="form-label" style="color: #202B41;">boton</label>
+                                    <button type="submit" class="btn btn-secondary w-50">Buscar Paciente</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="mt-3 d-flex">
+                            <table class="table table-hover w-100 ms-3 me-3">
+                                <thead>
+                                  <tr>
+                                    <th>Código</th>
+                                    <th>Apellidos</th>
+                                    <th>Nombres</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let paciente of pacientesFiltrados; let i = index" (click)="seleccionarPaciente(paciente)" [class.selected]="paciente === pacienteSeleccionado">
+                                        <td class="bg-transparent text-white">{{paciente.idUsuario}}</td>
+                                        <td class="bg-transparent text-white">{{paciente.name}}</td>
+                                        <td class="bg-transparent text-white">{{paciente.lastName}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary" (click)="verDetalle()" data-bs-toggle="modal" data-bs-target="#detalleCita">Programar Cita</button>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="modal fade" id="detalleCita" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" style="min-width: 70%;">
+          <div class="modal-content">
+            <div class="modal-header border-bottom border-secondary">
+              <h1 class="modal-title fs-6 text-white fw-bold" id="exampleModalLabel">Programar Cita</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3 d-flex">
+                    <div class="col-5">
+                        <app-calendar (dateSelected)="fechaSeleccionada($event)"></app-calendar>
+                        <div class="col-12 d-block mt-5">
+                            <p style="background-color: #202B41;" class="p-2 mb-0 text-center text-white">Detalle de Cita</p>
+                            <div class="d-grid w-100 bg-white">
+                                <div class="d-flex">
+                                    <div class="col-6">
+                                        <p class="text-center mb-0 p-2">Especialidad</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="text-center mb-0 p-2">{{especialidadCita?.service}}</p>
+                                    </div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="col-6">
+                                        <p class="text-center mb-0 p-2">Especialista</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="text-center mb-0 p-2">{{"Dr. " + especialista?.nombres + " " + especialista?.apellidos}}</p>
+                                    </div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="col-6">
+                                        <p class="text-center mb-0 p-2">Consultorio</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="text-center mb-0 p-2">Consultorio 5</p>
+                                    </div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="col-6">
+                                        <p class="text-center mb-0 p-2">Paciente</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="text-center mb-0 p-2">{{pacienteSeleccionado?.name + " " + pacienteSeleccionado?.lastName}}</p>
+                                    </div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="col-6">
+                                        <p class="text-center mb-0 p-2">Fecha</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="text-center mb-0 p-2">{{fechaCita| date:'dd/MM/yyyy'}}</p>
+                                    </div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="col-6">
+                                        <p class="text-center mb-0 p-2">Hora</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="text-center mb-0 p-2">8:15am</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Programar Cita</button>
-                </form>
+                    
+                    <div class="col-7">
+                        <table class="table table-hover" style="width: 95%; margin: 0 0 0 auto;">
+                            <thead>
+                              <tr>
+                                <th>Hora</th>
+                                <th>Consultorio</th>
+                                <th>Estado</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let hora of horas; let i = index" (click)="seleccionarFila(i)" [class.selected]="i === filaSeleccionada" >
+                                    <td class="bg-transparent text-white">{{hora}}</td>
+                                    <td class="bg-transparent text-white"></td>
+                                    <td class="bg-transparent text-white">Ocupado</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+              </form>
             </div>
-            
+            <div class="modal-footer border-secondary">
+                <button type="button" class="btn btn-primary">Registrar Cita</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+          </div>
         </div>
     </div>
 </app-layout>

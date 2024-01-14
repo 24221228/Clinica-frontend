@@ -7,6 +7,7 @@ import { errorTailorImports } from '@ngneat/error-tailor';
 
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './page/login.component';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -16,9 +17,15 @@ import { LoginComponent } from './page/login.component';
     CommonModule,
     ReactiveFormsModule,
     LoginRoutingModule,
-    errorTailorImports
+    errorTailorImports,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true
+    })
   ],
   providers: [
+    ToastrService,
     provideErrorTailorConfig({
       errors: {
         useValue: {

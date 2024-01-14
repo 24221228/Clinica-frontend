@@ -1,9 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 
-import { Person, User } from '../../interfaces/login.interface';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { UpdateUserDto } from '../../interfaces/UpdateUserDto';
+import { HttpClient } from '@angular/common/http';
+import {
+  CreateUserWithPersonDto,
+  UpdateUserDto,
+  Person,
+  User,
+  CreateUserWithPersonResponse
+} from '../../interfaces';
 
 
 @Injectable({
@@ -32,7 +37,20 @@ export class UsersService {
       );
   }
 
-  private handleError(_error: any): Observable<never> {
-    return throwError('Hubo un error en la solicitud. Por favor, inténtelo de nuevo.');
+  createUserWithPerson(userData: CreateUserWithPersonDto): Observable<CreateUserWithPersonResponse> {
+    const url = `${this.apiURL}usuarios/createAccount`;
+    return this.http.post<CreateUserWithPersonResponse>(url, userData)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  private handleError(error: any): Observable<never> {
+    //return throwError('Hubo un error en la solicitud. Por favor, inténtelo de nuevo.');
+    if (error.status === 400 || error.status === 401) {
+      return throwError(error.error);
+    }else {
+      return throwError('Hubo un error en la solicitud. Por favor, inténtelo de nuevo.');
+    }
   }
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { citas } from 'src/app/data/citas';
-import { Cita } from '../interfaces/cita.interface';
 import { headerItems } from './header.items';
 import { HeaderItem } from '../models/header.item';
 import { PersonasService } from 'src/app/core/presentation/services/personas/personas.service';
@@ -13,7 +12,7 @@ import { from } from 'rxjs';
   templateUrl: './records.component.html',
   styleUrls: ['./records.component.css']
 })
-export class RecordsComponent  implements OnInit{
+export class RecordsComponent implements OnInit{
   selectedRecordValue: string = '';
   citasData: any[] = citas;
   isRecordSelected: Boolean = false;
