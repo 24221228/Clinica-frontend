@@ -30,7 +30,7 @@ const routes: Routes = [
   {
     path: 'registrar-especialidad',
     loadChildren: () => import('./modules/register-specialty/register-specialty.module').then(m => m.RegisterSpecialtyModule),
-    data: { 'routeName': 'Registrar ESpecialidad' }
+    data: { 'routeName': 'Registrar Especialidad' }
   },
   {
     path: 'perfil',

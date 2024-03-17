@@ -17,11 +17,11 @@ export class DashboardComponent implements OnInit{
   top7Especialidades: any;
   top7Pacientes: any[] = [];
   ultimas10Citas: any[] = [];
-  cardData: [string, number, string, string][] = [
-    ["Cifras Totales", 1400, "bi bi-people-fill", "bg-gradient-purple"],
-    ["Cifras Totales", 250, "bi bi-currency-exchange", "bg-gradient-green"],
-    ["Cifras Totales", 750, "bi bi-people-fill", "bg-gradient-red"],
-    ["Cifras Totales", 980, "bi bi-calendar", "bg-gradient-skyblue"]
+  cardData: [string, number, string, string, string][] = [
+    ["Pacientes", 1400, "5% from the last day", "bi bi-people-fill", "bg-gradient-purple"],
+    ["Ingresos", 250, "19% from the last week", "bi bi-currency-exchange", "bg-gradient-green"],
+    ["Usuarios", 750, "2.1% from the last month", "bi bi-people-fill", "bg-gradient-red"],
+    ["Citas", 980, "0.3% from the last week", "bi bi-calendar", "bg-gradient-skyblue"]
   ];
   public datasetsPieChart = [
     {
@@ -220,14 +220,14 @@ export class DashboardComponent implements OnInit{
   public barChartLabels = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep'];
   public barChartDatasets = [
     {
-      label: 'Dataset 1',
+      label: 'Ingresos',
       data: [15, 25, 10, 30, 20, 13, 22, 36, 26],
       backgroundColor: 'rgba(7, 98, 237, 0.9)',
       borderColor: 'rgba(7, 98, 237, 1)',
       borderWidth: 1
     },
     {
-      label: 'Dataset 2',
+      label: 'Egresos',
       data: [30, 10, 20, 15, 25, 17, 20, 13, 25],
       backgroundColor: 'rgba(255, 0, 131, 0.9)',
       borderColor: 'rgba(255, 0, 131, 1)',

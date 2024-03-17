@@ -2,7 +2,7 @@
     <div class="bg-transparent">
         <!--Cards-->
         <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 container-cards m-0 mt-2 p-3">
-            <app-card *ngFor="let card of cardData" [title]="card[0]" [amount]="card[1]" [icon]="card[2]" [colorBG]="card[3]"></app-card>
+            <app-card *ngFor="let card of cardData" [title]="card[0]" [description]="card[2]" [amount]="card[1]" [icon]="card[3]" [colorBG]="card[4]"></app-card>
         </div>
         <!--Cuadros estadisticos-->
         <div id="container-statistical-graphs" class="row row-cols-lg-1 m-0">
@@ -59,7 +59,7 @@
                     </div>
                 </div>
                 <div id="container-dating-actions" class="col-lg-6 col-md-6 col-sm-12 col-12 rounded-3 p-3">
-                    <h5 class="m-0 text-white mt-0 mb-3">grafico en barras</h5>
+                    <h5 class="m-0 text-white mt-0 mb-3">Egresos vs Ingresos</h5>
                     <div>
                         <canvas baseChart
                                 width="500"

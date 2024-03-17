@@ -1,0 +1,17 @@
+<div class="hour-range-picker">
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="startHour" class="form-label text-white">Hora de inicio:</label>
+        <select id="startHour" [(ngModel)]="selectedHours.start" (change)="selectHour(selectedHours.start, 'start')" class="form-select">
+          <option *ngFor="let hour of hoursOfDay" [value]="hour">{{ hour }}</option>
+        </select>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="endHour" class="form-label text-white">Hora de fin:</label>
+        <select id="endHour" [(ngModel)]="selectedHours.end" (change)="selectHour(selectedHours.end, 'end')" class="form-select">
+          <option *ngFor="let hour of hoursOfDay" [value]="hour">{{ hour }}</option>
+        </select>
+      </div>
+    </div>
+</div>
+  

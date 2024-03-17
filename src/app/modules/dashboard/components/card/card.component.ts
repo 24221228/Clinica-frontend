@@ -7,6 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class CardComponent {
   @Input() icon: string = " ";
+  @Input() description: string = ""
   @Input() title: string = '';
   @Input() amount: number = 0;
   @Input() colorBG: string = "";

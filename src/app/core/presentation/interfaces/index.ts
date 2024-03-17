@@ -5,3 +5,4 @@ export { UpdateUserDto } from "./UpdateUserDto";
 export { Person } from "./login.interface";
 export { User } from "./user.interface";
 export { CreateUserWithPersonResponse } from "./createUserWithPersonResponse";
+export { CreateSpecialtyDto } from "./createSpecialtyDto";

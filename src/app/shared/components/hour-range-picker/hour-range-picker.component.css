@@ -1,0 +1,11 @@
+.hour-range-picker {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 300px;
+}
+
+.form-select{
+    background-color: var(--col-dark-black);
+    color: white;
+}

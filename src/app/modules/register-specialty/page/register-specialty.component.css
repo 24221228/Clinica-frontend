@@ -2,6 +2,7 @@
     background-color: var(--col-black);
 }
 #register-specialty-form_title,
-.input-register-specialty{
+.input-register-specialty,
+.form-select{
     background-color: var(--col-dark-black);
 }
