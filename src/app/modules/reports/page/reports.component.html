@@ -79,7 +79,7 @@
                           </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let record of recordsData">
+                            <tr *ngFor="let record of recordsData[registroTipoValue]">
                                 <td class="bg-transparent text-white">{{record.id}}</td>
                                 <td class="bg-transparent text-white">{{record.nombres}}</td>
                                 <td class="bg-transparent text-white">{{record.apellidos}}</td>
@@ -137,7 +137,7 @@
               <form>
                 <div class="mb-3">
                     <p class="text-white fw-lighter"><strong class="text-white-50 me-2">Código:</strong> {{ this.selectedItem?.id }}</p>
-                    <p class="text-white fw-lighter"><strong class="text-white-50 me-2">Nombres y Apellidos:</strong> {{ this.selectedItem?.name }}</p>
+                    <p class="text-white fw-lighter"><strong class="text-white-50 me-2">Nombres y Apellidos:</strong> {{ this.selectedItem?.nombres }}</p>
                     <p class="text-white fw-lighter"><strong class="text-white-50 me-2">Servicio:</strong> {{ this.selectedItem?.service }}</p>
                 </div>
               </form>

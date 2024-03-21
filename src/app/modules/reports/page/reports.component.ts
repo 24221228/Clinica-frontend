@@ -4,7 +4,8 @@ import { HeaderItem } from '../../records/models/header.item';
 import { PersonasService } from 'src/app/core/presentation/services/personas/personas.service';
 import { headerItems } from '../../records/page/header.items';
 import { Person } from 'src/app/core/presentation/interfaces/login.interface';
-import { from } from 'rxjs';
+import { Observable, Subject, from } from 'rxjs';
+import { pruebajson } from './prueba.component';
 
 @Component({
   selector: 'app-reports',
@@ -23,11 +24,16 @@ export class ReportsComponent implements OnInit{
   seleccionTiempoValue: string = '';
   registroTipoValue: string = '';
   headerItemsData: Record<string, HeaderItem[]> | undefined;
-  recordsData: any[] = [];
+  recordsData: Record<string, any> = pruebajson;
+  recordsData$: Observable<any>;
+
+  private registroTipoSubject = new Subject<string>();
 
   constructor(
     private personsServices: PersonasService
-  ){}
+  ){
+    this.recordsData$ = new Observable();
+  }
 
   ngOnInit(): void {
     this.headerItemsData = headerItems;
@@ -74,16 +80,9 @@ export class ReportsComponent implements OnInit{
     }
   }
 
-  async seleccionRegistro(event: any) {
+  seleccionRegistro(event: any) {
     this.registroTipoValue = event.target.value;
-    switch (this.registroTipoValue) {
-      case 'usuarios':
-        this.recordsData = await this.personas();
-        break;
-    
-      default:
-        break;
-    }
+    this.registroTipoSubject.next(this.registroTipoValue); // Actualiza el Subject con el nuevo valor
   }
 
   async personas(): Promise<Person[]> {

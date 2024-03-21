@@ -2,7 +2,7 @@
     <div class="row row-cols-lg-2 m-0 h-100 p-0">
         <div class="col-lg-6 col-md-7 col-sm-12 h-100 p-lg-5">
             <div class="h-100 p-lg-5 p-md-1 d-lg-block d-md-flex d-sm-flex d-flex m-lg-0 m-md-auto m-sm-auto">
-                <div id="container-form-login" class="h-100 p-lg-5 p-md-3 m-lg-block m-md-auto m-sm-auto m-auto w-lg-100">
+                <div id="container-form-login" class="h-100 p-lg-5 p-md-3 m-lg-block m-md-auto m-sm-auto m-auto w-lg-100 shadow rounded-4 overflow-auto "> <!--overflow-auto -->
                     <div class="h-100 p-lg-4 p-md-5 p-sm-5 w-100">
                         <ul class="nav nav-tabs mt-lg-0 mt-md-5 mb-5">
                             <li class="nav-item">
@@ -17,17 +17,17 @@
                             <div class="tab-pane" [class.active]="activeTab === 'tab1'" [class.show]="activeTab === 'tab1'" id="tab1">
                                 <form [formGroup]="iniciarSesionForm" (ngSubmit)="login()" autocomplete="off">
                                     <div class="mb-3">
-                                        <label for="emailLogin" class="form-label text-white">Correo Electrónico</label>
-                                        <input type="email" class="form-control" id="emailLogin" aria-describedby="emailHelp" formControlName="correo_electronico">
+                                        <label for="emailLogin" class="form-label text-white">Correo electrónico:</label>
+                                        <input type="email" placeholder="example@gmail.com" class="form-control" id="emailLogin" aria-describedby="emailHelp" formControlName="correo_electronico" [class.is-invalid]="iniciarSesionForm.get('correo_electronico')?.invalid && iniciarSesionForm.get('correo_electronico')?.touched">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="passwordLogin" class="form-label text-white">Contraseña</label>
-                                        <input type="password" class="form-control" id="passwordLogin" formControlName="contraseña">
+                                        <label for="passwordLogin" class="form-label text-white">Contraseña:</label>
+                                        <input type="password" class="form-control" id="passwordLogin" formControlName="contraseña" [class.is-invalid]="iniciarSesionForm.get('contraseña')?.invalid && iniciarSesionForm.get('contraseña')?.touched">
                                     </div>
                                     <div class="d-flex">
-                                        <span class="text-white text-center m-auto">{{messageError}}</span>
+                                        <span class="text-danger text-center m-auto">{{messageError}}</span>
                                     </div>
-                                    <button type="submit" class="btn btn-primary w-100 mt-5 p-2 position-relative overflow-hidden" [class.success]="isLoginSuccessful" [class.error]="!isLoginSuccessful">
+                                    <button type="submit" class="btn btn-success w-100 mt-5 p-2 position-relative overflow-hidden" [class.success]="isLoginSuccessful" [class.error]="!isLoginSuccessful">
                                         <span class="icon-button-locked-login d-inline-block"></span>
                                     </button>
                                     <div class="mt-5 d-flex justify-content-center">
@@ -39,25 +39,25 @@
                             <div class="tab-pane" [class.active]="activeTab === 'tab2'" [class.show]="activeTab === 'tab2'" id="tab2">
                                 <form [formGroup]="registrarCuentaForm" (ngSubmit)="registrarCuenta()" autocomplete="off">
                                     <div class="mb-3">
-                                        <label for="nombreRegistrame" class="form-label text-white">Nombres</label>
+                                        <label for="nombreRegistrame" class="form-label text-white">Nombres:</label>
                                         <input type="text" class="form-control" id="nombreRegistrame" formControlName="nombreRegistrame">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="apellidosRegistrame" class="form-label text-white">Apellidos</label>
+                                        <label for="apellidosRegistrame" class="form-label text-white">Apellidos:</label>
                                         <input type="text" class="form-control" id="apellidosRegistrame" formControlName="apellidosRegistrame">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="emailRegistrame" class="form-label text-white">Correo Electrónico</label>
+                                        <label for="emailRegistrame" class="form-label text-white">Correo electrónico:</label>
                                         <input type="email" class="form-control" id="emailRegistrame" formControlName="emailRegistrame">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="passwordRegistrame" class="form-label text-white">Contraseña</label>
+                                        <label for="passwordRegistrame" class="form-label text-white">Contraseña:</label>
                                         <input type="password" class="form-control" id="passwordRegistrame" formControlName="passwordRegistrame">
                                     </div>
                                     <div class="d-flex">
-                                        <span class="text-white text-center m-auto">{{messageError}}</span>
+                                        <span class="text-danger text-center m-auto">{{messageError}}</span>
                                     </div>
-                                    <button type="submit" class="btn btn-primary w-100 mt-3 p-2">
+                                    <button type="submit" class="btn btn-success w-100 mt-3 p-2">
                                         Crear Cuenta
                                     </button>
                                 </form>
