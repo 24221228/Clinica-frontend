@@ -5,14 +5,16 @@ import { PersonasService } from 'src/app/core/presentation/services/personas/per
 import { headerItems } from '../../records/page/header.items';
 import { Person } from 'src/app/core/presentation/interfaces/login.interface';
 import { Observable, Subject, from } from 'rxjs';
-import { pruebajson } from './prueba.component';
+import { Especialista } from 'src/app/core/presentation/interfaces/especialista';
+import { EspecialistaService } from 'src/app/core/presentation/services/especialista/especialista.service';
+
 
 @Component({
   selector: 'app-reports',
   templateUrl: './reports.component.html',
   styleUrls: ['./reports.component.css']
 })
-export class ReportsComponent implements OnInit{
+export class ReportsComponent implements OnInit {
   selectedRecordValue: string = '';
   citasData: any[] = citas;
   isRecordSelected: Boolean = false;
@@ -23,15 +25,17 @@ export class ReportsComponent implements OnInit{
   sortOrder: string = 'asc';
   seleccionTiempoValue: string = '';
   registroTipoValue: string = '';
-  headerItemsData: Record<string, HeaderItem[]> | undefined;
-  recordsData: Record<string, any> = pruebajson;
+  headerItemsData: Record<string, HeaderItem[]> = {};
+  recordsData: any[] = [];
   recordsData$: Observable<any>;
+  headerItems: HeaderItem[] = [];
 
   private registroTipoSubject = new Subject<string>();
 
   constructor(
-    private personsServices: PersonasService
-  ){
+    private personsServices: PersonasService,
+    private especialistaService: EspecialistaService
+  ) {
     this.recordsData$ = new Observable();
   }
 
@@ -40,7 +44,7 @@ export class ReportsComponent implements OnInit{
     this.personas();
   }
 
-  selectRecord(){
+  /*selectRecord(){
     if(this.selectedRecordValue != ""){
       this.registrationTitle = this.selectedRecordValue
       this.isRecordSelected = true;
@@ -48,12 +52,13 @@ export class ReportsComponent implements OnInit{
       this.registrationTitle = "";
       this.isRecordSelected = false;
     }
-  }
+  }*/
 
   verDetalle(cita: any){
     this.selectedItem = cita;
     this.showModal = true;
   }
+  
   seleccionTiempo(event: any) {
     this.seleccionTiempoValue = event.target.value;
   }
@@ -66,11 +71,11 @@ export class ReportsComponent implements OnInit{
         this.sortBy = key;
         this.sortOrder = 'asc';
       }
-  
+
       this.citasData.sort((a, b) => {
         const valueA = key === 'name' || key === 'service' ? a[key].toLowerCase() : a[key];
         const valueB = key === 'name' || key === 'service' ? b[key].toLowerCase() : b[key];
-  
+
         if (this.sortOrder === 'asc') {
           return valueA < valueB ? -1 : 1;
         } else {
@@ -80,15 +85,43 @@ export class ReportsComponent implements OnInit{
     }
   }
 
-  seleccionRegistro(event: any) {
+  async seleccionRegistro(event: any) {
     this.registroTipoValue = event.target.value;
-    this.registroTipoSubject.next(this.registroTipoValue); // Actualiza el Subject con el nuevo valor
+    if (this.registroTipoValue) {
+      this.registrationTitle = `Registros de ${this.registroTipoValue}`;
+      this.isRecordSelected = true;
+      switch (this.registroTipoValue) {
+        case 'usuarios':
+          this.recordsData = await this.personas();
+          break;
+        case 'especialistas':
+          this.recordsData = await this.especialistas();
+          break;
+        default:
+          this.recordsData = [];
+          break;
+      }
+    } else {
+      this.registrationTitle = "";
+      this.isRecordSelected = false;
+      this.recordsData = [];
+    }
   }
 
   async personas(): Promise<Person[]> {
     try {
       const persons = await from(this.personsServices.getAll()).toPromise();
       return persons as Person[];
+    } catch (error) {
+      console.error('Error al obtener personas:', error);
+      throw error;
+    }
+  }
+
+  async especialistas(): Promise<Especialista[]> {
+    try {
+      const especialistas = await from(this.especialistaService.getAll()).toPromise();
+      return especialistas as Especialista[];
     } catch (error) {
       console.error('Error al obtener personas:', error);
       throw error;
