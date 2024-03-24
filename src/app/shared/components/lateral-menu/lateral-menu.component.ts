@@ -19,7 +19,7 @@ export class LateralMenuComponent implements OnInit{
     lastName: 'Torrejon',
     phone: '918273927',
     roles: {
-      name: 'superadmin'
+      name: 'paciente'
     }
   }
   constructor(

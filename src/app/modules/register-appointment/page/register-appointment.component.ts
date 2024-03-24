@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Observable, Subject, of } from 'rxjs';
 import { especialidades } from 'src/app/data/especialidades';
 import { pacientes } from 'src/app/data/pacientes';
 
@@ -8,9 +9,13 @@ import { pacientes } from 'src/app/data/pacientes';
   styleUrls: ['./register-appointment.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RegisterAppointmentComponent {
+export class RegisterAppointmentComponent implements OnInit{
   showModal = false; // Controla si se muestra o no el modal
   horas: string[] = [];
+  //horaSeleccionada: string = ''
+  //horaSeleccionada$: Subject<string> = new Subject<string>();
+  horaSeleccionada: Observable<string>;
+  horaSeleccionadaSubject: Subject<string> = new Subject<string>();
   pacientes: string[] = []
   filaSeleccionada: number = -1;
   pacienteSeleccionado: any;;
@@ -28,6 +33,10 @@ export class RegisterAppointmentComponent {
 
   constructor(private cdr: ChangeDetectorRef){
     this.generarHoras();
+    this.horaSeleccionada = of('')
+  }
+  ngOnInit(): void {
+    this.horaSeleccionada = this.horaSeleccionadaSubject.asObservable();
   }
 
   buscarPacientes(): void {
@@ -73,7 +82,7 @@ export class RegisterAppointmentComponent {
   seleccionarFila(index: number) {
     this.filaSeleccionada = index;
     this.cdr.detectChanges();
-    console.log('Datos de cita seleccionada:', this.horas[index]);
+    this.horaSeleccionadaSubject.next(this.horas[index]);
   }
 
   generarHoras() {
