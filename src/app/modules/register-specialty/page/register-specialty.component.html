@@ -21,22 +21,22 @@
                             </div>
                             <div class="mb-3 mt-3">
                                 <label for="exampleInputPassword1" class="form-label text-white">Sede (*)</label>
-                                <select class="form-select text-white input-register-user border-secondary" aria-label="Floating label select example" id="sede" formControlName="sede">
+                                <select class="form-select text-white input-register-user border-secondary" aria-label="Floating label select example" id="id_sede" formControlName="id_sede">
                                     <option selected>Seleccionar</option>
                                     <option value="1">Huanuco</option>
                                 </select>  
                             </div>
-                            <div class="mb-3 mt-3 d-grid">
+                            <div class="mb-3 mt-3 d-grid" style="height: fit-content;">
                                 <label for="exampleInputEmail1" class="form-label text-white">Disponibilidad en dias (*)</label>
                                 <app-week-day-picker (selectedDaysChange)="handleSelectedDaysChange($event)"></app-week-day-picker>
                             </div>
                             <div class="mb-3 mt-3 d-flex flex-column">
                                 <label for="exampleInputEmail1" class="form-label text-white">Disponibilidad en horas (*)</label>
-                                <app-hour-range-picker (selectedHoursChange)="handleSelectedHoursChange($event)"></app-hour-range-picker>
+                                <app-hour-range-picker [dias]="disponibilidad_dias" (selectedHoursChange)="handleSelectedHoursChange($event)"></app-hour-range-picker>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Registrar Especialidad</button>
+                    <button type="submit" class="btn btn-primary" (click)="registrar()">Registrar Especialidad</button>
                 </form>
             </div>
         </div>

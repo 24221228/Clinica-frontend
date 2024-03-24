@@ -1,14 +1,30 @@
 <div class="hour-range-picker">
-    <div class="row">
-      <div class="col-md-6 mb-3">
-        <label for="startHour" class="form-label text-white">Hora de inicio:</label>
-        <select id="startHour" [(ngModel)]="selectedHours.start" (change)="selectHour(selectedHours.start, 'start')" class="form-select">
+    <div class="row" *ngFor="let dia of dias">
+      <div class="col-md-4 mb-3">
+        <label for="day" class="form-label text-white">Día:</label>
+        <p class="text-white">{{dia}}</p>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="startHour" class="form-label text-white">H. inicio:</label>
+        <!--<select id="startHour" [(ngModel)]="selectedHours[dia]?.start" (change)="selectHour(selectedHours[dia]?.start, 'start', dia)" class="form-select">
+          <option *ngFor="let hour of hoursOfDay" [value]="hour">{{ hour }}</option>
+        </select>-->
+         <!--<select id="startHour" [(ngModel)]="selectedHours[dia]?.start" (change)="selectHour(selectedHours[dia]?.start || '', 'start', dia)" class="form-select">
+          <option *ngFor="let hour of hoursOfDay" [value]="hour">{{ hour }}</option>
+        </select>-->
+        <select id="startHour" [ngModel]="selectedHours[dia]?.start || '' " (ngModelChange)="selectHour($event, 'start', dia)" class="form-select">
           <option *ngFor="let hour of hoursOfDay" [value]="hour">{{ hour }}</option>
         </select>
+        <!--<select id="startHour" [(ngModel)]="selectedHours.start" (change)="selectHour(selectedHours.start, 'start')" class="form-select">
+          <option *ngFor="let hour of hoursOfDay" [value]="hour">{{ hour }}</option>
+        </select>-->
       </div>
-      <div class="col-md-6 mb-3">
-        <label for="endHour" class="form-label text-white">Hora de fin:</label>
-        <select id="endHour" [(ngModel)]="selectedHours.end" (change)="selectHour(selectedHours.end, 'end')" class="form-select">
+      <div class="col-md-4 mb-3">
+        <label for="endHour" class="form-label text-white">H. fin:</label>
+        <!--<select id="endHour" [(ngModel)]="selectedHours.end" (change)="selectHour(selectedHours.end, 'end')" class="form-select">
+          <option *ngFor="let hour of hoursOfDay" [value]="hour">{{ hour }}</option>
+        </select>-->
+        <select id="endHour" [ngModel]="selectedHours[dia]?.end || '' " (ngModelChange)="selectHour($event, 'end', dia)" class="form-select">
           <option *ngFor="let hour of hoursOfDay" [value]="hour">{{ hour }}</option>
         </select>
       </div>
