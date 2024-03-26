@@ -1,4 +1,5 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { TableColumn } from './models/columna-tabla';
 
 @Component({
   selector: 'app-tabla-dinamica',
@@ -6,13 +7,16 @@ import { Component, Input, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./tabla-dinamica.component.css']
 })
 export class TablaDinamicaComponent {
-  @Input() headerItems: any[] = [];
-  @Input() recordsData: any[] = [];
-  @Output() detalleSeleccionado = new EventEmitter<any>();
+  @Input() columns: TableColumn[] = [];
+  @Input() data: any[] = [];
+  @Output() detailSelected = new EventEmitter<any>();
+  modalData: any;
+  showModal = true;
 
   constructor() { }
 
   verDetalle(registro: any) {
-    this.detalleSeleccionado.emit(registro);
+    this.detailSelected.emit(registro);
+    this.showModal = true; // Muestra el modal
   }
 }

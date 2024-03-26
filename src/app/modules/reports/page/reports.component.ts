@@ -20,7 +20,7 @@ export class ReportsComponent implements OnInit {
   isRecordSelected: Boolean = false;
   registrationTitle: string = '';
   selectedItem: any; // Almacena el elemento seleccionado
-  showModal = false; // Controla si se muestra o no el modal
+  showModal = true; // Controla si se muestra o no el modal
   sortBy: string = 'id';
   sortOrder: string = 'asc';
   seleccionTiempoValue: string = '';
@@ -29,6 +29,9 @@ export class ReportsComponent implements OnInit {
   recordsData: any[] = [];
   recordsData$: Observable<any>;
   headerItems: HeaderItem[] = [];
+  modalData: any;
+  selectedColumns: any[] = [];
+  selectedData: any[] = [];
 
   private registroTipoSubject = new Subject<string>();
 
@@ -44,6 +47,21 @@ export class ReportsComponent implements OnInit {
     this.personas();
   }
 
+  columna_especialistas = [
+    { id: 'id', name: 'ID' },
+    { id: 'nombre', name: 'Nombre' },
+    { id: 'descripcion', name: 'Descripcion' },
+    { id: 'costo', name: 'Costo de especialidad' }
+  ];
+  columna_usuario = [
+    { id: 'id', name: 'ID' },
+    { id: 'nombres', name: 'Nombre' },
+    { id: 'apellidos', name: 'Apellidos' },
+    { id: 'documento_numero', name: 'Número de documento'},
+    { id: 'direccion_completa', name: 'Dirección' },
+    { id: 'numero_telefono', name: 'Número de teléfono' },
+  ];
+  
   /*selectRecord(){
     if(this.selectedRecordValue != ""){
       this.registrationTitle = this.selectedRecordValue
@@ -57,6 +75,8 @@ export class ReportsComponent implements OnInit {
   verDetalle(cita: any){
     this.selectedItem = cita;
     this.showModal = true;
+    console.log(cita)
+    console.log(this.showModal)
   }
   
   seleccionTiempo(event: any) {
@@ -86,27 +106,41 @@ export class ReportsComponent implements OnInit {
   }
 
   async seleccionRegistro(event: any) {
-    this.registroTipoValue = event.target.value;
-    if (this.registroTipoValue) {
-      this.registrationTitle = `Registros de ${this.registroTipoValue}`;
+    this.selectedRecordValue = event.target.value;
+  
+    if (this.selectedRecordValue) {
+      this.registrationTitle = `Registros de ${this.selectedRecordValue}`;
       this.isRecordSelected = true;
-      switch (this.registroTipoValue) {
+      switch (this.selectedRecordValue) {
         case 'usuarios':
-          this.recordsData = await this.personas();
+          this.selectedColumns = [
+            { id: 'id', name: 'ID' },
+            { id: 'nombres', name: 'Nombres' },
+            { id: 'apellidos', name: 'Apellidos' },
+          ];
+          this.selectedData = await this.personas();
           break;
         case 'especialistas':
-          this.recordsData = await this.especialistas();
+          this.selectedColumns = [
+            { id: 'id', name: 'ID' },
+            { id: 'nombre', name: 'Nombre' },
+            { id: 'descripcion', name: 'Descripción' },
+          ];
+          this.selectedData = await this.especialistas();
           break;
         default:
-          this.recordsData = [];
+          this.selectedColumns = [];
+          this.selectedData = [];
           break;
       }
     } else {
       this.registrationTitle = "";
       this.isRecordSelected = false;
-      this.recordsData = [];
+      this.selectedColumns = [];
+      this.selectedData = [];
     }
   }
+  
 
   async personas(): Promise<Person[]> {
     try {

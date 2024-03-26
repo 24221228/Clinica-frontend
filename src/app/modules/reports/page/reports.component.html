@@ -11,11 +11,6 @@
                         <option value="usuarios">Registro de Usuarios</option>
                     </select>
                 </div>
-                <!-- <div class="col-lg-3 col-md-3 col-sm-4 col-12 mt-lg-0 mt-md-0 mt-sm-0 mt-3 p-0">
-                    <button class="btn btn-primary" (click)="selectRecord()">
-                        Buscar Registro
-                    </button>
-                </div> -->
             </form>
             <form class="col-lg-12 col-md-12 col-sm-12" *ngIf="this.isRecordSelected">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-12 row row-cols-lg-1 row-cols-md-2 row-cols-sm-1 row-cols-1 m-0 mt-5 d-flex">
@@ -63,97 +58,22 @@
                 </div>
             </div>
         </div>
-        <div class="row row-cols-lg-1 m-4" *ngIf="this.isRecordSelected">
+        <div class="row row-cols-lg-1 m-4" *ngIf="isRecordSelected">
             <div id="records-table" class="col-lg-12 p-4 rounded-3">
-                <h5 class="text-white mb-4 border-bottom pb-3">{{registrationTitle}}</h5>
-                <div class="table-responsive">
-                    <table class="table table-hover">
-                        <thead *ngIf="headerItemsData && headerItemsData[registroTipoValue]">
-                          <tr>
-                            <th *ngFor="let itemHeader of headerItemsData[registroTipoValue]">{{itemHeader.label}}</th>
-                            <th>Acciones</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                            <app-tabla-dinamica 
-                                    [headerItems]="headerItems" 
-                                    [recordsData]="recordsData" 
-                                    (detalleSeleccionado)="verDetalle($event)">
-                            </app-tabla-dinamica>
-                        </tbody>
-                        <!--<tbody>
-                            <ng-container *ngIf="registroTipoValue === 'usuarios'">
-                                <tr *ngFor="let record of recordsData">
-                                    <td class="bg-transparent text-white">{{record.id}}</td>
-                                    <td class="bg-transparent text-white">{{record.nombres}}</td>
-                                    <td class="bg-transparent text-white">{{record.apellidos}}</td>
-                                    <td class="bg-transparent text-white">{{record.documento_numero}}</td>
-                                    <td class="bg-transparent text-white">{{record.direccion_completa}}</td>
-                                    <td class="bg-transparent text-white">{{record.numero_telefono}}</td>
-                                    <td class="bg-transparent text-white">
-                                        <button class="btn btn-primary" (click)="verDetalle(record)" data-bs-toggle="modal" data-bs-target="#detalleRegistroModal">
-                                            <i class="bi bi-eye"></i>
-                                        </button>
-                                        <button class="btn btn-success ms-2">
-                                            <i class="bi bi-pencil"></i>
-                                        </button>
-                                        <button class="btn btn-warning ms-2">
-                                            <i class="bi bi-file-earmark-pdf text-white"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </ng-container>
-                            <ng-container *ngIf="registroTipoValue === 'especialistas'">
-                                <tr *ngFor="let record of recordsData">
-                                    <td class="bg-transparent text-white">{{record.id}}</td>
-                                    <td class="bg-transparent text-white">{{record.nombre}}</td>
-                                    <td class="bg-transparent text-white">{{record.descripcion}}</td>
-                                    <td class="bg-transparent text-white">{{record.costo}}</td>
-                                    <td class="bg-transparent text-white">{{record.disponibilidad_dias}}</td>
-                                    <td class="bg-transparent text-white">
-                                        <button class="btn btn-primary" (click)="verDetalle(record)" data-bs-toggle="modal" data-bs-target="#detalleRegistroModal">
-                                            <i class="bi bi-eye"></i>
-                                        </button>
-                                        <button class="btn btn-success ms-2">
-                                            <i class="bi bi-pencil"></i>
-                                        </button>
-                                        <button class="btn btn-warning ms-2">
-                                            <i class="bi bi-file-earmark-pdf text-white"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </ng-container>
-                        </tbody>-->
-                    </table>
-                    <ul class="pagination justify-content-end">
-                        <li class="page-item">
-                          <a class="page-link">1</a>
-                        </li>
-                    </ul>
+                <h5 class="text-white mb-4 border-bottom pb-3">{{ registrationTitle }}</h5>
+                    <div class="table-responsive">
+                        <app-tabla-dinamica 
+                        [columns]="selectedColumns"
+                        [data]="selectedData"
+                        (detailSelected)="verDetalle($event)">
+                        </app-tabla-dinamica>
+                        <ul class="pagination justify-content-end">
+                            <li class="page-item">
+                            <a class="page-link">1</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="modal fade dark-mode" id="detalleRegistroModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content dark-mode">
-                <div class="modal-header border-bottom border-secondary dark-mode">
-                    <h1 class="modal-title fs-6 text-dark fw-bold" id="exampleModalLabel">Detalle de {{this.registrationTitle}}</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body dark-mode">
-                    <form>
-                        <div class="mb-3">
-                            <p class="text-dark fw-lighter"><strong class="text-dark-50 me-2">Código:</strong> {{ this.selectedItem?.id }}</p>
-                            <p class="text-dark fw-lighter"><strong class="text-dark-50 me-2">Nombres y Apellidos:</strong> {{ this.selectedItem?.nombres }}</p>
-                            <p class="text-dark fw-lighter"><strong class="text-dark-50 me-2">Servicio:</strong> {{ this.selectedItem?.service }}</p>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer border-secondary dark-mode">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
 </app-layout>
