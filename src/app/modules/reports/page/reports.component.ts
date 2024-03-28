@@ -15,6 +15,7 @@ import { EspecialistaService } from 'src/app/core/presentation/services/especial
   styleUrls: ['./reports.component.css']
 })
 export class ReportsComponent implements OnInit {
+  showTimeSelection: boolean = false;
   selectedRecordValue: string = '';
   citasData: any[] = citas;
   isRecordSelected: Boolean = false;
@@ -46,21 +47,6 @@ export class ReportsComponent implements OnInit {
     this.headerItemsData = headerItems;
     this.personas();
   }
-
-  columna_especialistas = [
-    { id: 'id', name: 'ID' },
-    { id: 'nombre', name: 'Nombre' },
-    { id: 'descripcion', name: 'Descripcion' },
-    { id: 'costo', name: 'Costo de especialidad' }
-  ];
-  columna_usuario = [
-    { id: 'id', name: 'ID' },
-    { id: 'nombres', name: 'Nombre' },
-    { id: 'apellidos', name: 'Apellidos' },
-    { id: 'documento_numero', name: 'Número de documento'},
-    { id: 'direccion_completa', name: 'Dirección' },
-    { id: 'numero_telefono', name: 'Número de teléfono' },
-  ];
   
   /*selectRecord(){
     if(this.selectedRecordValue != ""){
@@ -117,20 +103,49 @@ export class ReportsComponent implements OnInit {
             { id: 'id', name: 'ID' },
             { id: 'nombres', name: 'Nombres' },
             { id: 'apellidos', name: 'Apellidos' },
+            { id: 'documento_numero', name: 'Número de documento'},
+            { id: 'numero_telefono', name:'Número de telefono'},
+            { id: 'direccion_completa', name: 'Dirección '},
           ];
           this.selectedData = await this.personas();
           break;
         case 'especialistas':
           this.selectedColumns = [
             { id: 'id', name: 'ID' },
-            { id: 'nombre', name: 'Nombre' },
-            { id: 'descripcion', name: 'Descripción' },
+            { id: 'nombres', name: 'Nombres' },
+            { id: 'apellidos', name: 'Apellidos' },
+            { id: 'documento_numero', name: 'Número de documento' },
+            { id: 'telefono', name: 'Número de teléfono' },
+            { id: 'direccion', name: 'Dirección' },
           ];
           this.selectedData = await this.especialistas();
           break;
+          case 'pacientes':
+            this.selectedColumns = [
+              { id: 'id', name: 'ID' },
+              { id: 'nombres', name: 'Nombres' },
+              { id: 'apellidos', name: 'Apellidos' },
+              { id: 'documento_numero', name: 'Número de documento'},
+              { id: 'numero_telefono', name:'Número de telefono'},
+              { id: 'direccion_completa', name: 'Dirección '},
+            ];
+            this.selectedData = await this.personas();
+            break;
+            case 'citas':
+              this.selectedColumns = [
+                { id: 'id', name: 'ID' },
+                { id: 'nombres', name: 'Nombres' },
+                { id: 'apellidos', name: 'Apellidos' },
+                { id: 'documento_numero', name: 'Número de documento'},
+                { id: 'numero_telefono', name:'Número de telefono'},
+                { id: 'direccion_completa', name: 'Dirección '},
+              ];
+              this.selectedData = await this.personas();
+              break;
         default:
           this.selectedColumns = [];
           this.selectedData = [];
+          this.seleccionTiempoValue = "";
           break;
       }
     } else {
@@ -138,6 +153,7 @@ export class ReportsComponent implements OnInit {
       this.isRecordSelected = false;
       this.selectedColumns = [];
       this.selectedData = [];
+      this.seleccionTiempoValue = "";
     }
   }
   

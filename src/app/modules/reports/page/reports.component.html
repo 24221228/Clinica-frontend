@@ -15,7 +15,7 @@
             <form class="col-lg-12 col-md-12 col-sm-12" *ngIf="this.isRecordSelected">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-12 row row-cols-lg-1 row-cols-md-2 row-cols-sm-1 row-cols-1 m-0 mt-5 d-flex">
                     <div class="col-lg-3 col-md-3 col-sm-4 col-12 ps-lg-0 ps-md-0 ps-sm-0 pe-lg-3 pe-md-3 pe-sm-3 p-0">
-                        <select class="form-select" aria-label="Default select example" (change)="seleccionTiempo($event)">
+                        <select class="form-select" aria-label="Default select example" (change)="seleccionTiempo($event)" *ngIf="selectedRecordValue === 'citas'">
                             <option value="" selected>Seleccionar tiempo</option>
                             <option value="dia">Ver por día</option>
                             <option value="fechas">Ver entre dos fechas</option>
@@ -29,7 +29,6 @@
                     <div class="col-lg-3 col-md-3 col-sm-4 col-12 mt-lg-0 mt-md-0 mt-sm-0 mt-3 mb-lg-0 mb-md-0 mb-sm-0 mb-2 pe-lg-3 pe-md-3 pe-sm-3 p-0" *ngIf="seleccionTiempoValue === 'fechas'">
                         <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
-
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-12 row row-cols-lg-1 row-cols-md-2 row-cols-sm-1 row-cols-1 m-0 mt-4 d-flex">
                     <div class="col-lg-3 col-md-3 col-sm-4 col-12 d-flex p-lg-0 p-md-0 p-sm-0 pe-lg-3 pe-md-3 pe-sm-3 p-0">
